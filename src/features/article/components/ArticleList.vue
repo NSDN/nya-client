@@ -1,18 +1,40 @@
 <script setup lang="ts">
-import { ROUTE_NAME } from '@/constant/router'
+import type { Articles } from '../types'
+
 import { useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
+import { ref, watchEffect } from 'vue'
+import { queryArticles } from '../services'
+import { useCurrentPlateStore } from '@/features/plate/store'
 
 const router = useRouter()
 
 function transfer() {
   router.push({ name: ROUTE_NAME.ARTICLE, params: { id: 0 } })
 }
+
+const articles = ref<Articles>([])
+
+const setArticles = (list: Articles | undefined) => {
+  articles.value = list ?? []
+}
+
+watchEffect(async () => {
+  const currentPlateStore = useCurrentPlateStore()
+  const list = await queryArticles(currentPlateStore.currentPlate?.routeName)
+  setArticles(list)
+})
 </script>
 
 <template>
   <div id="article-list">
-    <button class="article-item" v-for="item in 30" @click="transfer">
-      这是帖文的示例
+    <button
+      class="article-item"
+      v-for="item of articles"
+      :key="item.title"
+      @click="transfer"
+    >
+      {{ item.title }}
     </button>
   </div>
 </template>

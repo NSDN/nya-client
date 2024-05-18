@@ -1,11 +1,21 @@
-/** @description API URL */
+/** API URL */
 export const API_URL = {
-  /** @description 版块列表获取 API */
-  GET_PLATE_LIST: '/plates',
-  /** @description 登入 API */
+  /** For test */
+  TEST: '/ping',
+
+  /** 登入 API */
   LOGIN: '/login',
-  /** @description 注册 API */
+  /** 注册 API */
   REGISTER: '/register',
-  /** @description 获取用户信息 */
+  /** 获取用户信息 */
   GET_USER_INFO: '/user',
+
+  /** 版块列表获取 API */
+  GET_PLATE_LIST: '/plates',
+
+  /**
+   * 帖文列表获取 API
+   * @param plateRouteName 版块名
+   */
+  QUERY_ARTICLES: (plateRouteName: string | undefined) => `/articles/${plateRouteName ?? ''}`
 }
