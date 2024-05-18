@@ -19,13 +19,13 @@ export async function login({
   AuthorizationServices.TokenInfo | undefined
 > {
   try {
-    const resonse: AuthorizationServices.LoginResponse = await http({
+    const response: AuthorizationServices.LoginResponse = await http({
       url: API_URL.LOGIN,
       method: HTTPMethods.POST,
       data: { username, password: password && hashSecreate(password) },
     })
 
-    return resonse.data
+    return response.data
   } catch (error) {
     console.error(error)
   }

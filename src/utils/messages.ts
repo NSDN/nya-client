@@ -1,7 +1,7 @@
 export function getMessage(
   key: string,
   params: Record<string, string> = {},
-  locale: string = 'zh'
+  locale: string = 'zh',
 ) {
   const localizedMessages: Record<string, string> =
     messages[locale as keyof typeof messages]

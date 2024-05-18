@@ -2,31 +2,32 @@
   "name": "nya-vue",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tiptap/starter-kit": "^2.0.0-beta.209",
-    "@tiptap/vue-3": "^2.0.0-beta.209",
-    "axios": "^1.2.1",
-    "crypto-js": "^4.1.1",
+    "@tiptap/starter-kit": "^2.4.0",
+    "@tiptap/vue-3": "^2.4.0",
+    "axios": "^1.6.8",
+    "crypto-js": "^4.2.0",
     "highlight.js": "^11.9.0",
-    "jose": "^4.11.1",
-    "markdown-it": "^14.0.0",
-    "pinia": "^2.0.28",
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "jose": "^5.3.0",
+    "markdown-it": "^14.1.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.27",
+    "vue-router": "^4.3.2"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.1.1",
-    "@types/markdown-it": "^13.0.7",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "naive-ui": "^2.34.2",
-    "typescript": "^4.9.4",
+    "@types/crypto-js": "^4.2.2",
+    "@types/markdown-it": "^14.1.1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "naive-ui": "^2.38.2",
+    "typescript": "^5.4.5",
     "vfonts": "^0.0.3",
-    "vite": "^4.0.3",
-    "vue-tsc": "^1.0.16"
+    "vite": "^5.2.11",
+    "vue-tsc": "^2.0.19"
   }
 }
