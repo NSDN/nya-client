@@ -12,7 +12,7 @@ export const STORE_ID = {
   LOGIN: 'login',
   JWT: 'jwt',
   USER: 'user',
-  CURRENT_PLATE: 'currentPlate',
+  PALTE: 'plate',
   MODAL: 'modal',
 }
 
