@@ -11,23 +11,21 @@ import { useLogin } from '.'
 import { useUserStore } from '../store'
 
 export default function useUserSimpleInfo() {
-  const userStore = useUserStore()
+  const user = useUserStore()
   const router = useRouter()
   const { logout } = useLogin()
 
   /** @description 简易个人信息表示名 */
   const username = computed<string>(
-    () => userStore.userInfo?.nickname ?? USER_SIMPLE_INFO_NAME_BEFORE_LOGIN
+    () => user.userInfo?.nickname ?? USER_SIMPLE_INFO_NAME_BEFORE_LOGIN,
   )
 
   /** @description 简易个人信息用户头像 */
-  const userIcon = computed<string>(
-    () => userStore.userInfo?.icon ?? VISITOR_ICON
-  )
+  const userIcon = computed<string>(() => user.userInfo?.icon ?? VISITOR_ICON)
 
   /** @description 点击简易个人信息面板 */
   const handleClick = async () => {
-    if (!userStore.loggedIn) {
+    if (!user.loggedIn) {
       await router.push({ name: ROUTE_NAME.LOGIN })
     } else {
       // TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）
@@ -35,13 +33,13 @@ export default function useUserSimpleInfo() {
     }
   }
 
-  let timer: NodeJS.Timer | null = null
+  let timer: NodeJS.Timeout
   const clearTimer = () => timer && clearInterval(timer)
 
   /** @description 长按简易个人信息面板以登出 */
   const handleLongTimePush = () => {
     // 未登入时不使长按生效
-    if (!userStore.loggedIn) {
+    if (!user.loggedIn) {
       return
     }
 

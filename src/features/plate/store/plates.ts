@@ -1,12 +1,13 @@
 import type { Plate } from '../types'
 
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { queryPlateList } from '../services'
 import { compareObject, storage } from '@/utils'
-import { STORAGE_KEYS } from '@/constant'
+import { STORAGE_KEYS, STORE_ID } from '@/constant'
+import { PageType } from '@/constant/enums'
 
-export const usePlateStore = defineStore('plate', () => {
+export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
   /** 分区版块列表 */
   const plates = ref<Plate.List | null>(
     storage.get<Plate.List>(STORAGE_KEYS.PLATES) ?? [],
@@ -34,9 +35,50 @@ export const usePlateStore = defineStore('plate', () => {
     list && setPlates(list)
   }
 
+  /** 当前板块 */
+  const currentPlate = ref<Plate.Item | null>(
+    storage.get<Plate.Item>(STORAGE_KEYS.CURRENT_PLATE),
+  )
+
+  /**
+   * 设置当前板块
+   * @param info 版块信息
+   */
+  const setCurrentPlate = (item: Plate.Item) => {
+    storage.set<Plate.Item>(STORAGE_KEYS.CURRENT_PLATE, item)
+    currentPlate.value = item
+  }
+
+  /**
+   * 设置初始板块
+   * @param info 版块信息
+   */
+  const setupCurrentPlate = (currentRouteName: string | undefined) => {
+    if (currentPlate.value) {
+      return
+    }
+
+    const current = plates.value?.find(
+      (item) => item.routeName === currentRouteName,
+    )
+
+    if (current) {
+      setCurrentPlate(current)
+    }
+  }
+
+  /** 当前版块是否为漫画版块 */
+  const isCommicPlate = computed(
+    () => currentPlate.value?.pageType === PageType.COMMIC,
+  )
+
   return {
     plates,
     setPlates,
     queryPlates,
+    currentPlate,
+    setCurrentPlate,
+    setupCurrentPlate,
+    isCommicPlate,
   }
 })

@@ -25,6 +25,7 @@ const routes: RouteRecordRaw[] = [
         path: ROUTE_PATH.NEW_TOPIC,
         name: ROUTE_NAME.NEW_TOPIC,
         component: () => import('@/views/computer/NewTopic.vue'),
+        meta: { requiresAuthorization: true },
       },
 
       ...topic,
