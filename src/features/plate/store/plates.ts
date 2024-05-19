@@ -49,6 +49,24 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
     currentPlate.value = item
   }
 
+  /**
+   * 设置初始板块
+   * @param info 版块信息
+   */
+  const setupCurrentPlate = (currentRouteName: string | undefined) => {
+    if (currentPlate.value) {
+      return
+    }
+
+    const current = plates.value?.find(
+      (item) => item.routeName === currentRouteName,
+    )
+
+    if (current) {
+      setCurrentPlate(current)
+    }
+  }
+
   /** 当前版块是否为漫画版块 */
   const isCommicPlate = computed(
     () => currentPlate.value?.pageType === PageType.COMMIC,
@@ -60,6 +78,7 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
     queryPlates,
     currentPlate,
     setCurrentPlate,
+    setupCurrentPlate,
     isCommicPlate,
   }
 })

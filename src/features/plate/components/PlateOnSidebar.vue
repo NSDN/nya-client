@@ -2,7 +2,7 @@
 import type { Plate } from '../types'
 
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
 import { usePlateStore } from '../store'
 
@@ -10,15 +10,16 @@ const props = defineProps<{
   item: Plate.Item
 }>()
 
-const route = useRoute()
 const router = useRouter()
 const background = computed<string>(() => `url(${props.item.background})`)
 
-const border = computed<string>(() =>
-  props.item.routeName === route.params.routeName ? '0.3rem solid red' : 'none',
-)
-
 const plate = usePlateStore()
+
+const border = computed<string>(() => {
+  return props.item.routeName === plate.currentPlate?.routeName
+    ? '0.3rem solid red'
+    : 'none'
+})
 
 async function transfer(): Promise<void> {
   await router.push({

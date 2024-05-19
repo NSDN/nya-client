@@ -27,7 +27,7 @@ const info = reactive(useUserSimpleInfo())
       <img :src="info.userIcon" alt="长按登出" />
     </button>
 
-    <BaseHint class="hint" hint="长按登出" />
+    <BaseHint margin-left="0.3rem" hint="长按登出" />
   </div>
 </template>
 
@@ -53,9 +53,5 @@ const info = reactive(useUserSimpleInfo())
   height: 3.5rem;
   justify-content: center;
   width: 3.5rem;
-}
-
-.hint {
-  margin: 0 0 0 0.3rem;
 }
 </style>

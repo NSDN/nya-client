@@ -1,7 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import { beforeEachGuard } from './guards'
 
-export default createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
+
+router.beforeEach(beforeEachGuard)
+
+export default router

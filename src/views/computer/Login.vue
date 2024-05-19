@@ -19,6 +19,12 @@ const formList: Record<'title' | 'type' | 'key', string>[] = [
 function moveToRegister() {
   router.push({ name: ROUTE_NAME.REGISTER })
 }
+
+const handleEnter = (inputType: string) => {
+  if (inputType === 'password') {
+    login()
+  }
+}
 </script>
 
 <template>
@@ -35,6 +41,7 @@ function moveToRegister() {
         :error="
           formError[item.key as keyof AuthorizationServices.LoginInfoError]
         "
+        @keydown.enter="() => handleEnter(item.type)"
       />
 
       <div class="button-group">

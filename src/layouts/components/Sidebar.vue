@@ -3,9 +3,15 @@ import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlateStore } from '@/features/plate/store'
 import { onBeforeMount } from 'vue'
+import { useRoute } from 'vue-router'
 
 const plate = usePlateStore()
-onBeforeMount(async () => plate.queryPlates())
+const route = useRoute()
+
+onBeforeMount(async () => {
+  await plate.queryPlates()
+  plate.setupCurrentPlate(route.params.routeName as string)
+})
 </script>
 
 <template>

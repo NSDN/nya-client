@@ -28,10 +28,10 @@ const useUploadCommic = defineStore('upload-commic', () => {
     const _pages: Commic.Pages = pictures.map<Commic.Page>(
       (picture: File, index: number) => ({
         id: (Date.now() + index).toString(),
-        path: window.URL.createObjectURL(picture),
-        name: picture.name,
+        thumbnail: window.URL.createObjectURL(picture),
+        title: picture.name,
         content: new File([picture], picture.name),
-      })
+      }),
     )
 
     console.log(_pages)
