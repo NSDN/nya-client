@@ -1,4 +1,4 @@
-export { API_URL } from './api_url'
+export { API_URL } from './api-url'
 
 /** @description 最底层背景 */
 export const BASE_BACKGROUND = 'https://i.imgur.com/hcxO1rIh.jpg'

@@ -5,7 +5,7 @@ export const STORAGE_KEYS = {
   PLATES: 'plates',
   COMMIC_TOPIC: 'commicTopic',
   CURRENT_PLATE: 'currentPlate',
-}
+} as const
 
 /** @description 状态库模块 ID（`defineStore` 所需的第一个参数） */
 export const STORE_ID = {
@@ -15,6 +15,8 @@ export const STORE_ID = {
   USER: 'user',
   PALTE: 'plate',
   MODAL: 'modal',
-}
+  NEW_TOPIC_COMMON: 'newTopicCommon',
+  NEW_ARTICLE: 'newArticle',
+} as const
 
 export { EMIT_EVENTS } from './emit-events'

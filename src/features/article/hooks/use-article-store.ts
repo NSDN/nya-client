@@ -33,8 +33,8 @@ const useArticleStore = defineStore('article', () => {
    * @description 请求文章列表
    */
   const queryList = async () => {
-    const plateRouteName = router.currentRoute.value.params.routeName.toString()
-    const articles = await queryArticles(plateRouteName)
+    const routeID = router.currentRoute.value.params.id.toString()
+    const articles = await queryArticles(routeID)
     setList(articles)
   }
 

@@ -13,9 +13,12 @@ export const API_URL = {
   /** 版块列表获取 API */
   GET_PLATE_LIST: '/plates',
 
+  /** 创建文章帖子 API */
+  CREATE_ARTICLE_TOPIC: '/article',
+
   /**
    * 帖文列表获取 API
-   * @param plateRouteName 版块名
+   * @param routeID 版块 ID
    */
-  QUERY_ARTICLES: (plateRouteName: string | undefined) => `/articles/${plateRouteName ?? ''}`
+  QUERY_ARTICLES: (routeID: string | undefined) => `/articles/${routeID ?? ''}`,
 }

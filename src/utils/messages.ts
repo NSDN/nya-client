@@ -1,5 +1,39 @@
+import { useModal } from '@/features/modal/stores'
+
+export enum MessageKeys {
+  /** 无预制信息 */
+  NO_MESSAGE = 'NO MESSAGE',
+  /** 请输入用户名 */
+  NEED_USERNAME = 'NEED_USERNAME',
+  /** 请输入用户名 */
+  NEED_PASSWORD = 'NEED_PASSWORD',
+  /** 已登出 */
+  LOGGED_OUT = 'LOGGED_OUT',
+  /** 缺少版块 ID */
+  MISSING_PLATE_ID = 'MISSING_PLATE_ID',
+  /** 缺少用户信息 */
+  MISSING_USER_INFO = 'MISSING_USER_INFO',
+  /** 缺少标题 */
+  MISSING_TITLE = 'MISSING_TITLE',
+  /** 缺少帖文 */
+  MISSING_BODY = 'MISSING_BODY',
+}
+
+export const messages = {
+  zh: {
+    [MessageKeys.NO_MESSAGE]: 'NO MESSAGE',
+    [MessageKeys.NEED_USERNAME]: '请输入用户名',
+    [MessageKeys.NEED_PASSWORD]: '请输入密码',
+    [MessageKeys.LOGGED_OUT]: '已登出',
+    [MessageKeys.MISSING_PLATE_ID]: '缺少版块 ID',
+    [MessageKeys.MISSING_USER_INFO]: '缺少用户信息',
+    [MessageKeys.MISSING_TITLE]: '缺少标题',
+    [MessageKeys.MISSING_BODY]: '缺少帖文',
+  },
+} as const
+
 export function getMessage(
-  key: string,
+  key: MessageKeys,
   params: Record<string, string> = {},
   locale: string = 'zh',
 ) {
@@ -15,19 +49,17 @@ export function getMessage(
 
     return message
   } else {
-    return messages.zh.NO_MESSAGE
+    return messages.zh[MessageKeys.NO_MESSAGE]
   }
 }
 
-export const messages = {
-  zh: {
-    /** @description 无预制信息 */
-    NO_MESSAGE: 'NO MESSAGE',
-    /** @description 请输入用户名 */
-    NEED_USERNAME: '请输入用户名',
-    /** @description 请输入用户名 */
-    NEED_PASSWORD: '请输入密码',
-    /** @description 已登出 */
-    LOGGED_OUT: '已登出',
-  },
+/** 发生错误时弹窗提示信息 */
+export const openMessageModal = (
+  key: MessageKeys,
+  params?: Record<string, string>,
+  locale?: string,
+) => {
+  const modalStore = useModal()
+  const message = getMessage(key, params, locale)
+  modalStore.showModal({ info: message })
 }

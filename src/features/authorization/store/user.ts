@@ -7,6 +7,7 @@ import { getMessage, storage } from '@/utils'
 import { getUserInfo } from '../services'
 import { useRouter } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
+import { MessageKeys } from '@/utils/messages'
 
 /** 用户 */
 const useUserStore = defineStore(STORE_ID.USER, () => {
@@ -41,7 +42,7 @@ const useUserStore = defineStore(STORE_ID.USER, () => {
   const logout = (): void => {
     setUserInfo(null)
     storage.clear()
-    window.alert(getMessage('LOGGED_OUT'))
+    window.alert(getMessage(MessageKeys.LOGGED_OUT))
     router.push({ name: ROUTE_NAME.HOME })
   }
 

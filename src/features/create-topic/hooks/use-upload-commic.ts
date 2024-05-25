@@ -2,12 +2,8 @@ import type { Commic } from '@/features/commic/types'
 
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { createCommicTopic } from '../services'
-import { useUncommitTopicStore } from '.'
 
 const useUploadCommic = defineStore('upload-commic', () => {
-  const topic = useUncommitTopicStore()
-
   /** @description 图片列表 */
   const pages = ref<Commic.Pages>([])
 
@@ -42,15 +38,7 @@ const useUploadCommic = defineStore('upload-commic', () => {
    * @description 提交漫画主题
    */
   const commitTopic = async (): Promise<void> => {
-    const succeed = await createCommicTopic({
-      plateRouteName: topic.plateRouteName,
-      topicTitle: topic.title,
-      pages: pages.value,
-    })
-
-    if (!succeed) {
-      window.alert('提交主题失败')
-    }
+    // TODO
   }
 
   return {

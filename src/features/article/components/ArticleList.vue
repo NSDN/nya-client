@@ -20,10 +20,10 @@ function transfer() {
     <button
       class="article-item"
       v-for="item of list"
-      :key="item.title"
+      :key="item.common.title + item.common.creationDate"
       @click="transfer"
     >
-      {{ item.title }}
+      {{ item.common.title }}
     </button>
   </div>
 </template>

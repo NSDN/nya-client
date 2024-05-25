@@ -1,4 +1,4 @@
-import type { Plate } from '../types'
+import type { Plate, PlateList } from '../types'
 
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
@@ -11,12 +11,12 @@ import { ROUTE_NAME } from '@/constant/router'
 
 export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
   /** 分区版块列表 */
-  const plates = ref<Plate.List | null>(
-    storage.get<Plate.List>(STORAGE_KEYS.PLATES) ?? [],
+  const plates = ref<PlateList | null>(
+    storage.get<PlateList>(STORAGE_KEYS.PLATES) ?? [],
   )
 
   /** @description 设置分区版块列表 */
-  const setPlates = (list: Plate.List | null) => {
+  const setPlates = (list: PlateList | null) => {
     storage.set(STORAGE_KEYS.PLATES, list)
     plates.value = list
   }
@@ -38,16 +38,16 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
   }
 
   /** 当前板块 */
-  const currentPlate = ref<Plate.Item | null>(
-    storage.get<Plate.Item>(STORAGE_KEYS.CURRENT_PLATE),
+  const currentPlate = ref<Plate | null>(
+    storage.get<Plate>(STORAGE_KEYS.CURRENT_PLATE),
   )
 
   /**
    * 设置当前板块
    * @param info 版块信息
    */
-  const setCurrentPlate = (item?: Plate.Item) => {
-    storage.set<Plate.Item | null>(STORAGE_KEYS.CURRENT_PLATE, item ?? null)
+  const setCurrentPlate = (item?: Plate) => {
+    storage.set<Plate | null>(STORAGE_KEYS.CURRENT_PLATE, item ?? null)
     currentPlate.value = item ?? null
   }
 
@@ -56,9 +56,7 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
    * @param info 版块信息
    */
   const setupCurrentPlate = (route: RouteLocationNormalized) => {
-    const current = plates.value?.find(
-      (item) => item.routeName === route.params.routeName,
-    )
+    const current = plates.value?.find((item) => item.id === route.params.id)
 
     setCurrentPlate(current)
   }
@@ -66,10 +64,10 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
   const router = useRouter()
 
   /** 切换至指定的版块 */
-  const transferToSpecifyPalte = async (plate: Plate.Item) => {
+  const transferToSpecifyPalte = async (plate: Plate) => {
     await router.push({
       name: ROUTE_NAME.PLATE_ITEM,
-      params: { routeName: plate.routeName },
+      params: { id: plate.id },
     })
 
     setCurrentPlate(plate)

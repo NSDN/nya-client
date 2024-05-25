@@ -10,6 +10,10 @@ const newArticle = useNewArticle()
 /** 切换书写/预览模式用标志 */
 const showReview = ref<boolean>(false)
 
+const submitArticle = async () => {
+  await newArticle.submitArticle()
+}
+
 const creater = ref<HTMLDivElement>()
 const textarea = ref<HTMLTextAreaElement>()
 
@@ -60,7 +64,7 @@ const hint = '书写正文时 <C-Enter> 可切换书写和预览'
         <BaseHint margin-left="0.8rem" scale="0.7" :hint="hint" />
       </div>
 
-      <button @click="() => {}">提交主题</button>
+      <button @click="submitArticle">提交主题</button>
     </div>
 
     <textarea
@@ -72,7 +76,7 @@ const hint = '书写正文时 <C-Enter> 可切换书写和预览'
 
     <p
       v-show="showReview"
-      v-html="newArticle.preview"
+      v-html="newArticle.rendered"
       class="global-block-wrapper article markdown-body"
     />
   </div>
