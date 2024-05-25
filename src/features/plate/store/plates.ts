@@ -6,6 +6,8 @@ import { queryPlateList } from '../services'
 import { compareObject, storage } from '@/utils'
 import { STORAGE_KEYS, STORE_ID } from '@/constant'
 import { PageType } from '@/constant/enums'
+import { useRoute, useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
 export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
   /** 分区版块列表 */
@@ -44,27 +46,35 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
    * 设置当前板块
    * @param info 版块信息
    */
-  const setCurrentPlate = (item: Plate.Item) => {
-    storage.set<Plate.Item>(STORAGE_KEYS.CURRENT_PLATE, item)
-    currentPlate.value = item
+  const setCurrentPlate = (item?: Plate.Item) => {
+    storage.set<Plate.Item | null>(STORAGE_KEYS.CURRENT_PLATE, item ?? null)
+    currentPlate.value = item ?? null
   }
+
+  const route = useRoute()
 
   /**
    * 设置初始板块
    * @param info 版块信息
    */
-  const setupCurrentPlate = (currentRouteName: string | undefined) => {
-    if (currentPlate.value) {
-      return
-    }
-
+  const setupCurrentPlate = () => {
     const current = plates.value?.find(
-      (item) => item.routeName === currentRouteName,
+      (item) => item.routeName === route.params.routeName,
     )
 
-    if (current) {
-      setCurrentPlate(current)
-    }
+    setCurrentPlate(current)
+  }
+
+  const router = useRouter()
+
+  /** 切换至指定的版块 */
+  const transferToSpecifyPalte = async (plate: Plate.Item) => {
+    await router.push({
+      name: ROUTE_NAME.PLATE_ITEM,
+      params: { routeName: plate.routeName },
+    })
+
+    setCurrentPlate(plate)
   }
 
   /** 当前版块是否为漫画版块 */
@@ -80,5 +90,6 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
     setCurrentPlate,
     setupCurrentPlate,
     isCommicPlate,
+    transferToSpecifyPalte,
   }
 })
