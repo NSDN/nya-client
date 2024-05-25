@@ -2,14 +2,8 @@
 import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 
 import { usePlateStore } from '@/features/plate/store'
-import { onBeforeMount } from 'vue'
 
 const plate = usePlateStore()
-
-onBeforeMount(async () => {
-  await plate.queryPlates()
-  plate.setupCurrentPlate()
-})
 </script>
 
 <template>

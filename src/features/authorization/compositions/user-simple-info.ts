@@ -7,13 +7,11 @@ import { ONE_SECOND } from '@/constant/enums'
 import { ROUTE_NAME } from '@/constant/router'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useLogin } from '.'
 import { useUserStore } from '../store'
 
 export default function useUserSimpleInfo() {
   const user = useUserStore()
   const router = useRouter()
-  const { logout } = useLogin()
 
   /** @description 简易个人信息表示名 */
   const username = computed<string>(
@@ -48,7 +46,7 @@ export default function useUserSimpleInfo() {
 
     // 计时超过 n 秒则登出，不到时间放开则会清除计时器
     timer = setTimeout((): void => {
-      logout()
+      user.logout()
       clearTimer()
     }, LOGOUT_LONG_PRESS_SECONDS * ONE_SECOND)
   }

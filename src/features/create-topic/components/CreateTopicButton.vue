@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, ref } from 'vue'
+import { type RouteLocationRaw, useRoute } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
 
 const route = useRoute()
@@ -8,14 +8,12 @@ const route = useRoute()
 const buttonDisplayed = computed<boolean>(
   () => route.meta.displayCreateTopicButton as boolean,
 )
+
+const to = ref<RouteLocationRaw>({ name: ROUTE_NAME.NEW_TOPIC })
 </script>
 
 <template>
-  <RouterLink
-    v-if="buttonDisplayed"
-    :to="{ name: ROUTE_NAME.NEW_TOPIC }"
-    id="create-topic-button"
-  >
+  <RouterLink v-if="buttonDisplayed" :to="to" id="create-topic-button">
     <img class="icon" src="@/assets/img/icon/note.svg" alt="note" />
   </RouterLink>
 </template>

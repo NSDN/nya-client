@@ -6,7 +6,7 @@ import { queryPlateList } from '../services'
 import { compareObject, storage } from '@/utils'
 import { STORAGE_KEYS, STORE_ID } from '@/constant'
 import { PageType } from '@/constant/enums'
-import { useRoute, useRouter } from 'vue-router'
+import { type RouteLocationNormalized, useRouter } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
 
 export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
@@ -51,13 +51,11 @@ export const usePlateStore = defineStore(STORE_ID.PALTE, () => {
     currentPlate.value = item ?? null
   }
 
-  const route = useRoute()
-
   /**
    * 设置初始板块
    * @param info 版块信息
    */
-  const setupCurrentPlate = () => {
+  const setupCurrentPlate = (route: RouteLocationNormalized) => {
     const current = plates.value?.find(
       (item) => item.routeName === route.params.routeName,
     )
