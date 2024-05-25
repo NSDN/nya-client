@@ -2,9 +2,10 @@ import type { AuthorizationServices } from '../types'
 
 import { useRouter } from 'vue-router'
 import { useJWTStore, useUserStore } from '../store'
-import { ROUTE_NAME } from '@/constant/router'
 import { reactive } from 'vue'
-import { getMessage, storage, updateObjectValue } from '@/utils'
+import { getMessage, updateObjectValue } from '@/utils'
+import { useLoginRedirect } from '@/features/temporary-storage/store'
+import { ROUTE_NAME } from '@/constant/router'
 
 export function useLogin() {
   const userStore = useUserStore()
@@ -39,20 +40,14 @@ export function useLogin() {
     // API 调用时会通过 axios 请求拦截器将 jwt 写入表头以在后端进行验证
     await userStore.queryUserInfo()
 
-    // 登入成功则跳转到首页
+    // 登入成功则跳转到指定的重定向画面或首页
     if (userStore.loggedIn) {
-      await router.push({ name: ROUTE_NAME.HOME })
+      const loginRedirect = useLoginRedirect()
+      await router.push(loginRedirect.redirect ?? { name: ROUTE_NAME.HOME })
     }
   }
 
-  /** @description 登出 */
-  const logout = (): void => {
-    storage.clear()
-    window.alert(getMessage('LOGGED_OUT'))
-    location.reload()
-  }
-
-  return { loginInfo, formError, login, logout }
+  return { loginInfo, formError, login }
 }
 
 /** @description 验证登录表单 */

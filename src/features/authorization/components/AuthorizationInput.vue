@@ -14,7 +14,7 @@ const value = useVModel(props, 'modelValue')
 </script>
 
 <template>
-  <form class="login-input">
+  <form class="login-input" onsubmit="return false;">
     <span class="title">{{ title }}：</span>
 
     <div class="input-wrapper">

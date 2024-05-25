@@ -3,17 +3,19 @@ import type { AuthorizationServices } from '../types'
 import { STORAGE_KEYS, STORE_ID } from '@/constant'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { storage } from '@/utils'
+import { getMessage, storage } from '@/utils'
 import { getUserInfo } from '../services'
+import { useRouter } from 'vue-router'
+import { ROUTE_NAME } from '@/constant/router'
 
-/** @description 用户 */
+/** 用户 */
 const useUserStore = defineStore(STORE_ID.USER, () => {
-  /** @description 用户信息 */
+  /** 用户信息 */
   const userInfo = ref<AuthorizationServices.UserInfo | null>(
-    storage.get<AuthorizationServices.UserInfo>(STORAGE_KEYS.USER_INFO)
+    storage.get<AuthorizationServices.UserInfo>(STORAGE_KEYS.USER_INFO),
   )
 
-  /** @description 设置用户信息 */
+  /** 设置用户信息 */
   const setUserInfo = (info: AuthorizationServices.UserInfo | null) => {
     userInfo.value = info
 
@@ -24,16 +26,26 @@ const useUserStore = defineStore(STORE_ID.USER, () => {
     }
   }
 
-  /** @description 获取用户信息 */
+  /** 获取用户信息 */
   const queryUserInfo = async () => {
     const userInfo = await getUserInfo()
     userInfo && setUserInfo(userInfo)
   }
 
-  /** @description 是否已经登入 */
+  /** 是否已经登入 */
   const loggedIn = computed<boolean>(() => !!userInfo.value)
 
-  return { userInfo, setUserInfo, queryUserInfo, loggedIn }
+  const router = useRouter()
+
+  /**  登出 */
+  const logout = (): void => {
+    setUserInfo(null)
+    storage.clear()
+    window.alert(getMessage('LOGGED_OUT'))
+    router.push({ name: ROUTE_NAME.HOME })
+  }
+
+  return { userInfo, setUserInfo, queryUserInfo, loggedIn, logout }
 })
 
 export default useUserStore

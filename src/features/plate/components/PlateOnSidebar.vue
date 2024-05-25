@@ -2,15 +2,12 @@
 import type { Plate } from '../types'
 
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import { ROUTE_NAME } from '@/constant/router'
 import { usePlateStore } from '../store'
 
 const props = defineProps<{
   item: Plate.Item
 }>()
 
-const router = useRouter()
 const background = computed<string>(() => `url(${props.item.background})`)
 
 const plate = usePlateStore()
@@ -22,12 +19,7 @@ const border = computed<string>(() => {
 })
 
 async function transfer(): Promise<void> {
-  await router.push({
-    name: ROUTE_NAME.PLATE_ITEM,
-    params: { routeName: props.item.routeName },
-  })
-
-  plate.setCurrentPlate(props.item)
+  await plate.transferToSpecifyPalte(props.item)
 }
 </script>
 

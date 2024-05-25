@@ -10,6 +10,7 @@ export const STORAGE_KEYS = {
 /** @description 状态库模块 ID（`defineStore` 所需的第一个参数） */
 export const STORE_ID = {
   LOGIN: 'login',
+  LOGIN_REDIRECT: 'loginRedirect',
   JWT: 'jwt',
   USER: 'user',
   PALTE: 'plate',
