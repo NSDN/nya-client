@@ -26,7 +26,7 @@ export const ROUTE_PATH = {
   /** @description 版块 */
   PLATE: '/plate',
   /** @description 版块 - 具体某一版块 */
-  PLATE_ITEM: '/plate/:routeName',
+  PLATE_ITEM: '/plate/:id',
 
   /** @description 漫画 */
   COMMIC: '/commic/:id',
@@ -60,5 +60,5 @@ export const ROUTE_NAME = {
 /** @description 版块根目录重定向 */
 export const PLATE_ROOT_REDIRECT: RouteRecordRedirectOption = {
   name: ROUTE_NAME.PLATE_ITEM,
-  params: { routeName: 'localization' },
+  params: { id: 'localization' },
 }

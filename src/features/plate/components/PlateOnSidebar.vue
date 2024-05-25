@@ -5,7 +5,7 @@ import { computed } from 'vue'
 import { usePlateStore } from '../store'
 
 const props = defineProps<{
-  item: Plate.Item
+  item: Plate
 }>()
 
 const background = computed<string>(() => `url(${props.item.background})`)
@@ -13,9 +13,7 @@ const background = computed<string>(() => `url(${props.item.background})`)
 const plate = usePlateStore()
 
 const border = computed<string>(() => {
-  return props.item.routeName === plate.currentPlate?.routeName
-    ? '0.3rem solid red'
-    : 'none'
+  return props.item.id === plate.currentPlate?.id ? '0.3rem solid red' : 'none'
 })
 
 async function transfer(): Promise<void> {
