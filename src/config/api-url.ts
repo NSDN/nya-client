@@ -13,6 +13,9 @@ export const API_URL = {
   /** 版块列表获取 API */
   GET_PLATE_LIST: '/plates',
 
+  /** 创建文章帖子 API */
+  CREATE_ARTICLE_TOPIC: '/article',
+
   /**
    * 帖文列表获取 API
    * @param routeID 版块 ID
