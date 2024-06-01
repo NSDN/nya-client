@@ -3,7 +3,12 @@ import BaseHint from '@/components/BaseHint.vue'
 
 import { computed, nextTick, ref } from 'vue'
 import { useNewArticle } from '../hooks/use-new-article'
-import 'github-markdown-css/github-markdown-light.css'
+import { openConfirmModal } from '@/utils/messages'
+
+defineProps<{
+  /** 标题节点 */
+  titleRef?: HTMLElement
+}>()
 
 const newArticle = useNewArticle()
 
@@ -11,7 +16,7 @@ const newArticle = useNewArticle()
 const showReview = ref<boolean>(false)
 
 const submitArticle = async () => {
-  await newArticle.submitArticle()
+  openConfirmModal(newArticle.submitArticle)
 }
 
 const creater = ref<HTMLDivElement>()
@@ -41,14 +46,26 @@ const reviewButtonText = computed<string>(() =>
   showReview.value ? '书写' : '预览',
 )
 
-const handleEnter = (event: KeyboardEvent) => {
-  // 允许 Ctrl + Enter 来切换书写和预览
-  if (event.ctrlKey) {
+const handleKeydown = (event: KeyboardEvent) => {
+  // 允许 Ctrl + P 来切换书写和预览
+  if (event.ctrlKey && event.key === 'p') {
+    event.preventDefault()
     switchReview()
+  }
+
+  // 允许 Ctrl + Enter 提交主题
+  if (event.ctrlKey && event.key === 'Enter') {
+    submitArticle()
   }
 }
 
-const hint = '书写正文时 <C-Enter> 可切换书写和预览'
+const hint = [
+  '<Tab>: 书写标题或正文时可在二者之间切换聚焦',
+  '<C-P>: 书写正文时可切换书写和预览',
+  '<C-Enter>: 书写正文时可提交主题',
+].join('\n')
+
+defineExpose({ bodyRef: textarea })
 </script>
 
 <template>
@@ -56,7 +73,7 @@ const hint = '书写正文时 <C-Enter> 可切换书写和预览'
     class="article-topic-creater"
     ref="creater"
     tabindex="0"
-    @keydown.enter="handleEnter"
+    @keydown="handleKeydown"
   >
     <div class="button-group">
       <div>
@@ -69,6 +86,7 @@ const hint = '书写正文时 <C-Enter> 可切换书写和预览'
 
     <textarea
       ref="textarea"
+      v-tabdown="titleRef"
       v-show="!showReview"
       v-model="newArticle.source"
       class="global-block-wrapper article"

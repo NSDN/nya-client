@@ -5,16 +5,19 @@ import ArticleTopicCreater from '@/features/create-topic/components/ArticleTopic
 import NewTopicTitle from '@/features/create-topic/components/NewTopicTitle.vue'
 
 import { usePlateStore } from '@/features/plate/store'
+import { ref } from 'vue'
 
 const plate = usePlateStore()
+const title = ref<{ titleRef?: HTMLElement }>()
+const creater = ref<{ bodyRef?: HTMLElement }>()
 </script>
 
 <template>
   <div id="new-topic">
     <BackButton class="back" />
-    <NewTopicTitle />
+    <NewTopicTitle ref="title" :body-ref="creater?.bodyRef" />
     <UploadCommicWrapper v-if="plate.isCommicPlate" />
-    <ArticleTopicCreater v-else />
+    <ArticleTopicCreater v-else ref="creater" :title-ref="title?.titleRef" />
   </div>
 </template>
 

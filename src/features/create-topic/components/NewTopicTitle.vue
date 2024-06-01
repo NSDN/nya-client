@@ -1,20 +1,26 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { useNewTopicCommon } from '../hooks/use-new-topic-common'
 
-// 进入创建帖文画面时默认聚焦在标题上
-const inputRef = ref<HTMLInputElement>()
-onMounted(() => inputRef.value?.focus())
+defineProps<{
+  /** 文章体输入框节点 */
+  bodyRef?: HTMLElement
+}>()
 
+const titleRef = ref<HTMLInputElement>()
 const newTopic = useNewTopicCommon()
+
+defineExpose({ titleRef })
 </script>
 
 <template>
   <input
-    ref="inputRef"
+    ref="titleRef"
     class="topic-title"
-    placeholder="标题"
+    v-focus
+    v-tabdown="bodyRef"
     v-model="newTopic.title"
+    placeholder="标题"
   />
 </template>
 

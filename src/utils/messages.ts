@@ -17,6 +17,8 @@ export enum MessageKeys {
   MISSING_TITLE = 'MISSING_TITLE',
   /** 缺少帖文 */
   MISSING_BODY = 'MISSING_BODY',
+  /** 是否确认上传帖文 */
+  CONFIRM_SUBMIT_TOPIC = 'CONFIRM_SUBMIT_TOPIC',
 }
 
 export const messages = {
@@ -29,6 +31,7 @@ export const messages = {
     [MessageKeys.MISSING_USER_INFO]: '缺少用户信息',
     [MessageKeys.MISSING_TITLE]: '缺少标题',
     [MessageKeys.MISSING_BODY]: '缺少帖文',
+    [MessageKeys.CONFIRM_SUBMIT_TOPIC]: '是否确认上传帖文',
   },
 } as const
 
@@ -62,4 +65,23 @@ export const openMessageModal = (
   const modalStore = useModal()
   const message = getMessage(key, params, locale)
   modalStore.showModal({ info: message })
+}
+
+/** 打开确认操作弹窗 */
+export const openConfirmModal = (
+  confirmCallback: Function,
+  options: {
+    key: MessageKeys
+    params?: Record<string, string>
+    locale?: string
+  } = { key: MessageKeys.CONFIRM_SUBMIT_TOPIC },
+) => {
+  const modalStore = useModal()
+  const message = getMessage(options.key, options.params, options.locale)
+
+  modalStore.showModal({
+    info: message,
+    confirmCallback,
+    useSecondButton: true,
+  })
 }

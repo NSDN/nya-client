@@ -39,7 +39,7 @@ body {
 
 /* 全局块元素包装 */
 .global-block-wrapper {
-  background: var(--common-block-background);
+  background-color: var(--common-block-background) !important;
   border-radius: var(--common-block-radius);
   box-shadow: var(--common-block-box-shadow);
   box-sizing: border-box;

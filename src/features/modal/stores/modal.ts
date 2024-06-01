@@ -8,15 +8,18 @@ export const useModal = defineStore(STORE_ID.MODAL, () => {
   /** 模态框节点 */
   const modal = ref<HTMLDialogElement | undefined>()
 
-  /** 模态框选项 */
-  const modalOptions = ref<Modal.ModalOptions>({
-    info: '',
+  const defaultOptions: Modal.ModalOptions = {
+    info: 'Confirm?',
     buttonLabel: ['确认', '取消'],
-  })
+    useSecondButton: false,
+  }
+
+  /** 模态框选项 */
+  const modalOptions = ref<Modal.ModalOptions>(defaultOptions)
 
   /** 显示模态框 */
-  const showModal = (options: Modal.ModalOptions) => {
-    modalOptions.value = { ...modalOptions.value, ...options }
+  const showModal = (options?: Modal.ModalOptions) => {
+    modalOptions.value = { ...defaultOptions, ...options }
     modal.value?.showModal()
   }
 

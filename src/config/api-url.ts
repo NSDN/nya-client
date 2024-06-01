@@ -18,7 +18,13 @@ export const API_URL = {
 
   /**
    * 帖文列表获取 API
-   * @param routeID 版块 ID
+   * @param plateID 版块ID
    */
-  QUERY_ARTICLES: (routeID: string | undefined) => `/articles/${routeID ?? ''}`,
+  QUERY_ARTICLES: (plateID: string) => `/articles/${plateID}`,
+
+  /**
+   * 帖子楼层列表获取 API
+   * @param topicID 帖子ID
+   */
+  QUERY_TOPIC_FLOORS: (topicID: string) => `/floors/${topicID}`,
 }

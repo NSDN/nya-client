@@ -1,29 +1,28 @@
 <script setup lang="ts">
-import type { Articles } from '../types'
+import type { Article, Articles } from '../types'
 
-import { useRouter } from 'vue-router'
-import { ROUTE_NAME } from '@/constant/router'
+import useArticleStore from '../hooks/use-article-store'
 
 defineProps<{
   list: Articles
 }>()
 
-const router = useRouter()
+const articleStore = useArticleStore()
 
-function transfer() {
-  router.push({ name: ROUTE_NAME.ARTICLE, params: { id: 0 } })
+const transfer = async (item: Article) => {
+  await articleStore.goToArticle(item.topicID)
 }
 </script>
 
 <template>
   <div id="article-list">
     <button
-      class="article-item"
+      class="article-item markdwon-body"
       v-for="item of list"
-      :key="item.common.title + item.common.creationDate"
-      @click="transfer"
+      :key="item.topicID"
+      @click="() => transfer(item)"
     >
-      {{ item.common.title }}
+      <span v-html="item.title" />
     </button>
   </div>
 </template>
