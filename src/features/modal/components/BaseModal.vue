@@ -30,9 +30,9 @@ const handleCancel = () => {
 
     <div class="button-group">
       <BaseButton
+        v-focus
         :label="options.buttonLabel![0]"
         @click="handleConfirm"
-        autofocus
       />
 
       <BaseButton
