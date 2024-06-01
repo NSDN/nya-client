@@ -5,24 +5,25 @@ import { ref } from 'vue'
 import { queryArticles } from '../services'
 import { useRouter } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
+import { STORE_ID } from '@/constant'
 
-const useArticleStore = defineStore('article', () => {
+const useArticleStore = defineStore(STORE_ID.ARTICLE, () => {
   const router = useRouter()
 
-  /** @description 文章列表 */
+  /** 文章列表 */
   const list = ref<Articles>([])
 
   /**
-   * @description 设置文章列表
+   * 设置文章列表
    * @param _list 文章列表
    */
   const setList = (_list: Articles | undefined) => (list.value = _list ?? [])
 
   /**
-   * @description 点击文章
+   * 点击文章
    * @param commicID 文章 ID
    */
-  const clickListItem = async (articleID: string): Promise<void> => {
+  const goToArticle = async (articleID: string): Promise<void> => {
     await router.push({
       name: ROUTE_NAME.ARTICLE,
       params: { id: articleID },
@@ -30,7 +31,7 @@ const useArticleStore = defineStore('article', () => {
   }
 
   /**
-   * @description 请求文章列表
+   * 请求文章列表
    */
   const queryList = async () => {
     const routeID = router.currentRoute.value.params.id.toString()
@@ -41,7 +42,7 @@ const useArticleStore = defineStore('article', () => {
   return {
     list,
     setList,
-    clickListItem,
+    goToArticle,
     queryList,
   }
 })

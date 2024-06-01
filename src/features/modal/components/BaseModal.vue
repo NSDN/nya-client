@@ -14,13 +14,13 @@ onMounted(() => (modalStore.modal = modal.value))
 const options = computed<Modal.ModalOptions>(() => modalStore.modalOptions)
 
 const handleConfirm = () => {
-  options.value.confirmCallback?.()
   modalStore.closeModal()
+  options.value.confirmCallback?.()
 }
 
 const handleCancel = () => {
-  options.value.cancelCallback?.()
   modalStore.closeModal()
+  options.value.cancelCallback?.()
 }
 </script>
 
@@ -65,7 +65,7 @@ const handleCancel = () => {
 
 .button-group {
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
   justify-content: center;
 }
 

@@ -1,4 +1,4 @@
-/** @description 浏览器 storage 键名 */
+/** 浏览器 storage 键名 */
 export const STORAGE_KEYS = {
   TOKEN_INFO: 'tokenInfo',
   USER_INFO: 'userInfo',
@@ -7,7 +7,7 @@ export const STORAGE_KEYS = {
   CURRENT_PLATE: 'currentPlate',
 } as const
 
-/** @description 状态库模块 ID（`defineStore` 所需的第一个参数） */
+/** 状态库模块 ID（`defineStore` 所需的第一个参数） */
 export const STORE_ID = {
   LOGIN: 'login',
   LOGIN_REDIRECT: 'loginRedirect',
@@ -17,6 +17,8 @@ export const STORE_ID = {
   MODAL: 'modal',
   NEW_TOPIC_COMMON: 'newTopicCommon',
   NEW_ARTICLE: 'newArticle',
+  ARTICLE: 'article',
+  FLOOR: 'floor',
 } as const
 
 export { EMIT_EVENTS } from './emit-events'

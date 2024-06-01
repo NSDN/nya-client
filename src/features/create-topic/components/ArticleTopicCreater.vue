@@ -3,7 +3,7 @@ import BaseHint from '@/components/BaseHint.vue'
 
 import { computed, nextTick, ref } from 'vue'
 import { useNewArticle } from '../hooks/use-new-article'
-import 'github-markdown-css/github-markdown-light.css'
+import { openConfirmModal } from '@/utils/messages'
 
 defineProps<{
   /** 标题节点 */
@@ -16,7 +16,7 @@ const newArticle = useNewArticle()
 const showReview = ref<boolean>(false)
 
 const submitArticle = async () => {
-  await newArticle.submitArticle()
+  openConfirmModal(newArticle.submitArticle)
 }
 
 const creater = ref<HTMLDivElement>()

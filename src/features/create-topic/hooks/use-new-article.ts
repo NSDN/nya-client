@@ -6,10 +6,10 @@ import { useNewTopicCommon } from './use-new-topic-common'
 import { usePlateStore } from '@/features/plate/store'
 import { MessageKeys, openMessageModal } from '@/utils/messages'
 import { createArticleTopic } from '../services'
-import { type Article, ArticleType } from '@/features/topic/types'
 import { useUserStore } from '@/features/authorization/store'
 import { useRouter } from 'vue-router'
 import { ROUTE_NAME } from '@/constant/router'
+import { type Article, ArticleType } from '@/features/article/types'
 
 export const useNewArticle = defineStore(STORE_ID.NEW_ARTICLE, () => {
   /** 书写的 Markdown */
@@ -42,17 +42,14 @@ export const useNewArticle = defineStore(STORE_ID.NEW_ARTICLE, () => {
     if (!validateArticle()) return
 
     const article: Article = {
-      common: {
-        author,
-        plate,
-        title: newTopic.title,
-        tag: [],
-        creationDate: new Date(),
-      },
-
-      floors: [
-        { level: 1, author, bodyType: articleType.value, body: rendered.value },
-      ],
+      topicID: '',
+      author,
+      plate,
+      title: newTopic.title,
+      tag: [],
+      creationDate: new Date(),
+      bodyType: articleType.value,
+      body: rendered.value,
     }
 
     const succeed = await createArticleTopic(article)
@@ -88,7 +85,7 @@ export const useNewArticle = defineStore(STORE_ID.NEW_ARTICLE, () => {
 
 const getAuthor = () => {
   const user = useUserStore()
-  const author = user.userInfo?.nickname
+  const author = user.userInfo
 
   if (!author) {
     openMessageModal(MessageKeys.MISSING_USER_INFO)
