@@ -1,6 +1,6 @@
 <template>
   <div id="announcement">
-    <span class="line" v-for="item of 3">这是公告的示例</span>
+    <span class="line" v-for="_ of 3">这是公告的示例</span>
   </div>
 </template>
 
@@ -11,8 +11,7 @@
   box-shadow: 0 1px 8px 0 #888;
   display: flex;
   flex-direction: column;
-  font-size: 14px;
-  height: 4rem;
+  height: 5.5rem;
 }
 
 .line {

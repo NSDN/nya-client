@@ -25,7 +25,8 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
   background-size: v-bind('BASE_BACKGROUND_SIZE');
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .middle {
@@ -39,7 +40,7 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
   box-sizing: border-box;
   display: flex;
   flex: 1;
-  overflow: auto;
+  overflow: hidden;
   padding: var(--common-content-padding);
 }
 
