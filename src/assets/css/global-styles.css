@@ -20,8 +20,12 @@
 
   /* 版块牌子 */
   --plate-name-color: #fff;
-  --plate-name-font-size: 18px;
+  --plate-name-font-size: var(--text-logo-size);
   --plate-name-text-shadow: 1px 1px 8px #000;
+
+  /* 文字 */
+  --text-common-size: 18px;
+  --text-logo-size: 22px;
 }
 
 :root {
@@ -30,11 +34,19 @@
 
 * {
   font-family: 'Fira Code', 'Noto Sans SC', 'Noto Serif SC', monospace;
-  color: var(--common-font-color);
 }
 
 body {
   margin: 0;
+  font-size: var(--text-common-size);
+}
+
+button {
+  font-size: unset;
+}
+
+.markdown-body {
+  font-size: unset !important;
 }
 
 /* 全局块元素包装 */

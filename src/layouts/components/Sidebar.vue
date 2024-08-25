@@ -27,7 +27,7 @@ const plate = usePlateStore()
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  width: 20rem;
+  width: 24rem;
 }
 
 .plate-group {

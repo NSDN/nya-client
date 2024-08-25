@@ -30,7 +30,7 @@ const handleClickLogo = () => {
   background: rgba(255, 100, 100, 0.6);
   box-sizing: border-box;
   display: flex;
-  font-size: 20px;
+  font-size: var(--text-logo-size);
   font-weight: 600;
   height: 5rem;
   justify-content: space-between;

@@ -37,7 +37,7 @@ async function transfer(): Promise<void> {
   box-shadow: var(--common-block-box-shadow);
   box-sizing: border-box;
   display: flex;
-  height: 5rem;
+  height: 6rem;
   justify-content: center;
   outline: none;
   padding: 0;
