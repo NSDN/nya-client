@@ -19,8 +19,9 @@ onBeforeMount(async (): Promise<void> => {
   await commic.queryPages(commicID)
   await comment.queryList(commicID)
 })
+
 // 面板容器样式
-const pane_wrapper_style ="display: flex;flex:1;flex-direction: column;"
+const pane_wrapper_style = 'display: flex;flex:1;flex-direction: column;'
 </script>
 
 <template>
@@ -31,7 +32,7 @@ const pane_wrapper_style ="display: flex;flex:1;flex-direction: column;"
       size="large"
       animated
       class="tabs"
-      :pane-wrapper-style=pane_wrapper_style
+      :pane-wrapper-style="pane_wrapper_style"
     >
       <n-tab-pane
         name="comic"

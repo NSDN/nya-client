@@ -3,9 +3,12 @@ import { NImage, NCard, NSpace, NTag, NButton, NDataTable } from 'naive-ui'
 import { onMounted, ref } from 'vue'
 import { PictureListTypeEnum } from '@/features/commic/enums'
 import PictureList from '@/features/commic/components/PictureList.vue'
+import { Commic } from '@/features/commic/types'
+
 const imgDiv = ref<HTMLElement | null>(null)
 let width = ref()
 let height = ref()
+
 onMounted(() => {
   // 获取初始宽高
   if (imgDiv.value) {
@@ -13,80 +16,23 @@ onMounted(() => {
     height.value = imgDiv.value.offsetHeight
   }
 })
+
 // 静态图片列表
-const PictureItem = ref([
-  {
-    id: 1,
+const pictureItem = ref<Commic.PictureItem[]>(
+  Array.from({ length: 30 }, (_, key) => ({
+    id: key.toString(),
     thumbnail:
       'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '0',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '1',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-  {
-    id: 1,
-    thumbnail:
-      'https://lain.bgm.tv/pic/cover/l/0a/7f/340381_oqqxt.jpg?_gl=1*g65124*_ga*MTY2MDExNzk4LjE3MjM0NTczMDA.*_ga_1109JLGMHN*MTcyNDQwMjc4Ny43LjEuMTcyNDQwMjgzMi4wLjAuMA..',
-    title: '2',
-  },
-])
+    title: key.toString(),
+  })),
+)
+
 // 静态漫画属性
 const columns = [
-  {
-    title: '属性',
-    key: 'attribute',
-  },
-  {
-    title: '名字',
-    key: 'name',
-  },
+  { title: '属性', key: 'attribute' },
+  { title: '名字', key: 'name' },
 ]
+
 const data = [
   {
     key: 0,
@@ -163,6 +109,7 @@ const data = [
           :height
         />
       </div>
+
       <!-- 展示区 -->
       <div class="display">
         <n-card
@@ -176,16 +123,17 @@ const data = [
             <n-tag type="success">悲伤</n-tag>
             <n-tag type="warning">平和</n-tag>
             <n-tag type="error"> 魔理沙 </n-tag>
-            <n-tag type="error" v-for="i in 30"> 恶搞 </n-tag>
+            <n-tag type="error" v-for="_ of 30"> 恶搞 </n-tag>
           </n-space>
         </n-card>
         <PictureList
           class="pages"
           :style="{ maxHeight: height * 0.7 + 'px' }"
-          :list="PictureItem"
+          :list="pictureItem"
           :list-type="PictureListTypeEnum.PAGE"
         />
       </div>
+
       <!-- 信息区 -->
       <div class="info">
         <!-- 表格展示属性 -->

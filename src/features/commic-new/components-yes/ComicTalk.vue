@@ -3,17 +3,15 @@
     操作人: MGRoid
     操作: 这个用户信息可以封装组件，不过暂时先这样
  -->
-
-<script setup lang="ts">
-</script>
-
 <template>
   <div class="talk">
     <div class="info">
       <span class="name">用户名是七个字</span>
+
       <div class="display flex-center">
         <img class="avatar" src="/src/assets/img/temp/avatar.png" />
       </div>
+
       <div class="posts grid-center">
         <div class="flex-center">
           <p>111</p>
@@ -28,23 +26,27 @@
           <p>积分</p>
         </div>
       </div>
+
       <div class="grade grid-center">
         <span>Exの神明</span>
         <div>
           <div style="background-color: red; height: 100%; width: 100px"></div>
         </div>
       </div>
+
       <div class="attribute grid-center">
         <p>人妖槽:152</p>
         <p>喵玉币:555</p>
         <p>萌度:951</p>
         <p>信仰:11</p>
       </div>
+
       <div class="exhibit grid-center">
-        <template v-for="i in 12">
+        <template v-for="_ of 12">
           <img class="medal" src="\src\assets\img\temp\10000.gif" alt="" />
         </template>
       </div>
+
       <div class="domain grid-center">
         <p>QQ交谈</p>
         <p>私信</p>
@@ -55,31 +57,32 @@
 
     <div class="speak flex-center">
       <h1>这是标题</h1>
-      <div>
-        这里是内容区,到时候设置为Md渲染方式
-      </div>
+      <div>这里是内容区,到时候设置为Md渲染方式</div>
     </div>
   </div>
 </template>
 
 <style scoped>
 .talk {
-  flex: 1;
+  box-sizing: border-box;
   display: flex;
-  margin: 1rem;
+  flex: 1;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: wheat;
 }
 /* 去除p标签上下边距 */
 .info p {
   background-color: whitesmoke;
   margin: 0 auto;
 }
-.info {
-  flex: 15;
-  display: flex;
-  flex-direction: column;
-  background-color: wheat;
-  margin-right: 1rem;
-}
+
 /* 用户名 */
 .name {
   background-color: aliceblue;
@@ -87,6 +90,7 @@
   font-size: 1rem;
   border-bottom: 0.2rem black solid;
 }
+
 /* 头像 */
 .display {
   background-color: aquamarine;
@@ -102,6 +106,7 @@
   border: 0.1rem solid black;
   box-shadow: 0.1rem 0.1rem 0.1rem #fff176;
 }
+
 /* 贴文属性 */
 .posts {
   flex: 8;
@@ -138,6 +143,7 @@
   grid-template-rows: 1fr 1fr;
   flex-wrap: wrap;
 }
+
 /* 勋章 */
 .exhibit {
   flex: 33;
@@ -145,28 +151,30 @@
   grid-template-rows: 1fr 1fr 1fr;
 }
 .medal {
-  height: 90%;
+  width: 40px;
 }
+
 /* 功能区 */
 .domain {
-  flex: 13;
+  flex: 12;
   background-color: aqua;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
+
 /* 发言 */
 .speak {
-  flex: 85;
+  flex: 8;
   background-color: white;
   flex-direction: column;
 }
-.speak h1{
+.speak h1 {
   width: 100%;
   flex: 1;
   background-color: yellow;
   margin: 0 auto;
 }
-.speak div{
+.speak div {
   width: 100%;
   height: 100%;
   flex: 9;
