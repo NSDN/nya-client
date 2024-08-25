@@ -6,7 +6,8 @@ const topic: RouteRecordRaw[] = [
   {
     path: ROUTE_PATH.COMMIC,
     name: ROUTE_NAME.COMMIC,
-    component: () => import('@/views/computer/Commic.vue'),
+    // component: () => import('@/views/computer/Commic.vue'),
+    component: () => import('@/views/computer/Commic-temp.vue'),
   },
   {
     path: ROUTE_PATH.ARTICLE,

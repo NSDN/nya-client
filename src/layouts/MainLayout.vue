@@ -4,18 +4,21 @@ import Sidebar from './components/Sidebar.vue'
 import Header from './components/Header.vue'
 
 import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
+
+import { ref } from 'vue'
+const isSidebar = ref<boolean>(true)
 </script>
 
 <template>
   <div id="main-layout" :style="`background-image: url(${BASE_BACKGROUND})`">
-    <Header />
+    <Header v-model:isSidebar="isSidebar" />
 
     <div class="middle">
-      <Sidebar />
-      <div class="content"><RouterView /></div>
+      <Sidebar v-model:isSidebar="isSidebar" />
+      <div class="content" ><RouterView /></div>
     </div>
 
-    <footer>footer</footer>
+    <footer >footer</footer>
     <CreateTopicButton />
   </div>
 </template>
@@ -31,7 +34,7 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
 
 .middle {
   display: flex;
-  flex: 1 1 0;
+  flex: 1;
   overflow: auto;
 }
 

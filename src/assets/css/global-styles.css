@@ -62,3 +62,20 @@ input,
 textarea {
   outline: none;
 }
+
+/** 时间: 2024-08-25
+* 操作人: MGRoid
+* 操作: 定义我写的样式
+*/
+/* 弹性居中样式 */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 栅格居中样式 */
+.grid-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
