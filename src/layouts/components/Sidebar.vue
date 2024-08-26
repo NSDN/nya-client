@@ -4,11 +4,10 @@ import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
 import { usePlateStore } from '@/features/plate/store'
 
 const plate = usePlateStore()
-const isSidebar = defineModel('isSidebar')
 </script>
 
 <template>
-  <div class="sidebar" v-show="isSidebar">
+  <div class="sidebar">
     <div class="plate-group">
       <PlateOnSidebar
         class="plate-item"

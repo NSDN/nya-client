@@ -1,24 +1,33 @@
 <script setup lang="ts">
 import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './components/Sidebar.vue'
+import SidebarController from './components/SidebarController.vue'
 import Header from './components/Header.vue'
 
 import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
+import { ref, Transition } from 'vue'
 
-import { ref } from 'vue'
-const isSidebar = ref<boolean>(true)
+const displaySidebar = ref<boolean>(true)
+const controlSidebar = () => (displaySidebar.value = !displaySidebar.value)
 </script>
 
 <template>
   <div id="main-layout" :style="`background-image: url(${BASE_BACKGROUND})`">
-    <Header v-model:isSidebar="isSidebar" />
+    <Header />
 
     <div class="middle">
-      <Sidebar v-model:isSidebar="isSidebar" />
-      <div class="content" ><RouterView /></div>
+      <Transition name="slide">
+        <Sidebar v-show="displaySidebar" />
+      </Transition>
+
+      <!-- TODO: 边栏开关时的内容块动画 -->
+      <div class="content">
+        <SidebarController @click="controlSidebar" />
+        <RouterView />
+      </div>
     </div>
 
-    <footer >footer</footer>
+    <footer>footer</footer>
     <CreateTopicButton />
   </div>
 </template>
@@ -38,6 +47,16 @@ const isSidebar = ref<boolean>(true)
   overflow: auto;
 }
 
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+
 .middle .content {
   background: rgba(255, 192, 203, 0.8);
   box-sizing: border-box;
@@ -45,6 +64,7 @@ const isSidebar = ref<boolean>(true)
   flex: 1;
   overflow: hidden;
   padding: var(--common-content-padding);
+  position: relative;
 }
 
 #main-layout footer {

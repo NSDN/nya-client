@@ -10,16 +10,10 @@ const router = useRouter()
 const handleClickLogo = () => {
   router.push({ name: ROUTE_NAME.HOME })
 }
-/** 时间: 2024-08-19
-* 操作人: MGRoid
-* 操作: 先用组件通信实现折叠，后续看是否使用pinia通用仓库
-*/
-const isSidebar = defineModel('isSidebar')
 </script>
 
 <template>
-  <header id="header" >
-    <button @click="isSidebar=!isSidebar">折叠侧边栏</button>
+  <header id="header">
     <span id="logo" @click="handleClickLogo">
       喵玉殿 | 东方 Project 主题论坛
     </span>
