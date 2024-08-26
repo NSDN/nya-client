@@ -55,13 +55,15 @@ const pane_wrapper_style = 'display: flex;flex:1;flex-direction: column;'
 
 <style scoped>
 #commic {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 .back {
-  position: fixed;
-  right: 3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
   z-index: 1;
   align-self: flex-start;
   border: 0.2rem black solid;
