@@ -115,7 +115,6 @@ const data = [
         <n-card
           class="card"
           title="漫画标签"
-          :style="{ maxHeight: height * 0.3 + 'px' }"
         >
           <n-space>
             <!-- 按帖主选择的标签，老用户也可打标签 -->
@@ -128,7 +127,6 @@ const data = [
         </n-card>
         <PictureList
           class="pages"
-          :style="{ maxHeight: height * 0.7 + 'px' }"
           :list="pictureItem"
           :list-type="PictureListTypeEnum.PAGE"
         />
@@ -189,9 +187,11 @@ const data = [
   background-color: wheat;
 }
 .card {
+  flex: 3 1 0;
   overflow: auto;
 }
 .pages {
+  flex: 7 1 0;
   background-color: red;
 }
 .info {
