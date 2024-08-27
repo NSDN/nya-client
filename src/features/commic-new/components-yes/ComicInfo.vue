@@ -5,18 +5,6 @@ import { PictureListTypeEnum } from '@/features/commic/enums'
 import PictureList from '@/features/commic/components/PictureList.vue'
 import { Commic } from '@/features/commic/types'
 
-const imgDiv = ref<HTMLElement | null>(null)
-let width = ref()
-let height = ref()
-
-onMounted(() => {
-  // 获取初始宽高
-  if (imgDiv.value) {
-    width.value = imgDiv.value.offsetWidth
-    height.value = imgDiv.value.offsetHeight
-  }
-})
-
 // 静态图片列表
 const pictureItem = ref<Commic.PictureItem[]>(
   Array.from({ length: 30 }, (_, key) => ({
@@ -101,12 +89,11 @@ const data = [
     <span class="title">魔理沙太尊了！！！</span>
     <div class="main">
       <!-- 图片区 -->
-      <div class="cover flex-center" ref="imgDiv">
+      <div class="cover">
         <n-image
           object-fit="contain"
           src="\src\assets\img\temp\fm1.jpg"
-          :width
-          :height
+          class="flex-center"
         />
       </div>
 
@@ -176,9 +163,21 @@ const data = [
 .cover {
   flex: 1;
   background-color: black;
-  overflow: hidden;
 }
-
+:deep(.n-image) {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+:deep(.n-image:hover) {
+  cursor:default;
+}
+:deep(.n-image img) {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  cursor:pointer;
+}
 .display {
   flex: 1;
   display: flex;
