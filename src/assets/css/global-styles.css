@@ -73,9 +73,35 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+
 /* 栅格居中样式 */
 .grid-center {
   display: grid;
   justify-items: center;
   align-items: center;
+}
+
+/* 图片浏览背景 */
+.n-image-preview-overlay {
+  background-color: #333333fb;
+}
+/* 图片浏览工具栏 */
+.n-image-preview-toolbar{
+  left: 1%;
+  top: 50%;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  height: 19rem;
+  padding:12px ;
+  transform: translateY(-50%);
+}
+/* 工具栏图标 */
+.n-image-preview-toolbar .n-base-icon{
+margin: 0.2rem;
+}
+/* 工具栏弹出提示 */
+.v-binder-follower-container .v-binder-follower-content{
+  width: 9rem;
+  display: flex;
 }

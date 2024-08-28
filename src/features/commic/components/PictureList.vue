@@ -3,7 +3,7 @@ import type { Commic } from '../types'
 
 import { PictureListTypeEnum } from '../enums'
 import { computed } from 'vue'
-
+import { NImage } from 'naive-ui'
 const props = withDefaults(
   defineProps<{
     list: Commic.PictureItem[]
@@ -38,7 +38,15 @@ function clickItem(id: string): void {
       :key="item.id"
       @click="clickItem(item.id)"
     >
-      <img :src="item.thumbnail" :alt="item.title" />
+      <n-image
+        class="n-image"
+        :src="item.thumbnail"
+        :alt="item.title"
+        lazy
+        :intersection-observer-options="{
+          root: '#image-scroll-container',
+        }"
+      />
       <span :class="{ 'page-type-title': isPageType }">{{ item.title }}</span>
     </button>
   </div>
@@ -71,7 +79,7 @@ function clickItem(id: string): void {
   text-align: start;
 }
 
-.commic-item img {
+.commic-item .n-image {
   height: 10rem;
   object-fit: cover;
   width: 8rem;

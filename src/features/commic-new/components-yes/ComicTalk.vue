@@ -9,7 +9,7 @@
       <span class="name">用户名是七个字</span>
 
       <div class="display flex-center">
-        <img class="avatar" src="/src/assets/img/temp/avatar.png" />
+        <img class="avatar" src="/src/assets/img/temp/avatar.jpg" />
       </div>
 
       <div class="posts grid-center">
