@@ -8,6 +8,7 @@ const props = withDefaults(
   defineProps<{
     list: Commic.PictureItem[]
     listType?: PictureListTypeEnum
+    comicId?: Commic.PictureItem['id']
   }>(),
 
   { listType: PictureListTypeEnum.COMMIC }
@@ -39,7 +40,8 @@ function clickItem(id: string): void {
       @click="clickItem(item.id)"
     >
       <n-image
-        class="n-image"
+        class="flex-center"
+        :class="{ 'commic-light': item.id === comicId }"
         :src="item.thumbnail"
         :alt="item.title"
         preview-disabled
@@ -79,10 +81,12 @@ function clickItem(id: string): void {
   padding: 0;
   text-align: start;
 }
+:deep(.commic-light img) {
+  box-shadow: 0 0 10px 5px #ffeb3bd5;
+}
 
 .commic-item .n-image {
   height: 10rem;
-  object-fit: cover;
   width: 8rem;
 }
 

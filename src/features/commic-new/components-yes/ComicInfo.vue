@@ -21,9 +21,11 @@ const pictureItem = ref<Commic.PictureItem[]>(
   }))
 )
 const comicIndex = ref<string>(pictureItem.value[0].id)
+
 const setComicIndex = (id: string) => {
   comicIndex.value = id
 }
+
 // 获取最新下标
 const queryComicIndex = computed(() => {
   return pictureItem.value.findIndex((comic) => comic.id === comicIndex.value)
@@ -33,7 +35,7 @@ const onPrev = () => {
   if (queryComicIndex.value - 1 >= 0) {
     comicIndex.value = pictureItem.value[queryComicIndex.value - 1].id
   } else {
-    //到头时执行获取漫画钩子，如果已经没了则提示
+    //到头检查是否有前话，有则获取最新话的漫画列表并从最后一页开始
     comicIndex.value = pictureItem.value[pictureItem.value.length - 1].id
   }
 }
@@ -41,7 +43,7 @@ const onNext = () => {
   if (queryComicIndex.value < pictureItem.value.length - 1) {
     comicIndex.value = pictureItem.value[queryComicIndex.value + 1].id
   } else {
-    //到末尾时执行获取漫画钩子，如果已经没了则返回首页
+    //到尾检查是否有后话，有则获取最新话的漫画列表并从第一页开始
     comicIndex.value = pictureItem.value[0].id
   }
 }
@@ -158,6 +160,7 @@ const data = [
           class="pages"
           :list="pictureItem"
           :list-type="PictureListTypeEnum.PAGE"
+          :comicId="comicIndex"
           @clickItem="setComicIndex"
         />
       </div>
@@ -235,7 +238,6 @@ const data = [
 }
 .pages {
   flex: 7 1 0;
-  background-color: red;
 }
 .info {
   flex: 1;
