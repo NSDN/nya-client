@@ -42,6 +42,7 @@ function clickItem(id: string): void {
         class="n-image"
         :src="item.thumbnail"
         :alt="item.title"
+        preview-disabled
         lazy
         :intersection-observer-options="{
           root: '#image-scroll-container',

@@ -85,23 +85,23 @@ textarea {
 .n-image-preview-overlay {
   background-color: #333333fb;
 }
+
 /* 图片浏览工具栏 */
-.n-image-preview-toolbar{
-  left: 1%;
-  top: 50%;
+.n-image-preview-toolbar {
+  transform: translateY(calc(100% - 65vh));
+  height: auto;
+  left: 0;
   flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  height: 19rem;
-  padding:12px ;
-  transform: translateY(-50%);
+  padding: 0.3rem;
 }
+
 /* 工具栏图标 */
-.n-image-preview-toolbar .n-base-icon{
-margin: 0.2rem;
+.n-image-preview-toolbar .n-base-icon {
+  margin: 0.5rem 0;
 }
+
 /* 工具栏弹出提示 */
-.v-binder-follower-container .v-binder-follower-content{
+.v-binder-follower-container .v-binder-follower-content {
   width: 9rem;
   display: flex;
 }
