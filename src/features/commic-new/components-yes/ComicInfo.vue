@@ -125,15 +125,18 @@ const data = [
       <div class="cover">
         <!-- src="/src/assets/img/temp/封面方.jpg" -->
         <!-- src="/src/assets/img/temp/封面横.jpg" -->
+<!-- src="/src/assets/img/temp/小图.jpg"  -->
         <n-image-group
           show-toolbar-tooltip
           :on-preview-prev="onPrev"
           :on-preview-next="onNext"
         >
+<!-- :src="item.thumbnail" -->
           <n-image
+object-fit="contain"
             v-for="item in pictureItem"
-            object-fit="contain"
-            :src="item.thumbnail"
+                        :src="item.thumbnail"
+:style="{ '--background-url': `url(${item.thumbnail})` }"
             class="flex-center"
             lazy
             :intersection-observer-options="{
@@ -208,23 +211,35 @@ const data = [
 }
 .cover {
   flex: 1;
-  background-color: black;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.61);
 }
-:deep(.n-image) {
+:deep(.cover .n-image) {
+position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
-}
-:deep(.n-image:hover) {
+  }
+:deep(.cover .n-image:hover) {
   cursor: default;
 }
-:deep(.n-image img) {
+:deep(.cover .n-image::before) {
+  content: '';
   position: absolute;
-  max-width: 100%;
-  max-height: 100%;
-  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-image: var(--background-url);
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.5rem);
+  z-index: 0;
 }
-
+:deep(.cover .n-image img) {
+  position: absolute;
+    max-height: 100%;
+width: 100%;
+  cursor: pointer;
+z-index: 1;
+}
 .display {
   flex: 1;
   display: flex;
