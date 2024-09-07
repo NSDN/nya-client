@@ -16,7 +16,7 @@ import { Commic } from '@/features/commic/types'
 const pictureItem = ref<Commic.PictureItem[]>(
   Array.from({ length: 28 }, (_, key) => ({
     id: key.toString(),
-    thumbnail: `\\src\\assets\\img\\temp\\《究极至高的乌堇对决》\\${key}.jpg`,
+    thumbnail: `/src/assets/img/temp/《究极至高的乌堇对决》/${key}.jpg`,
     title: key.toString(),
   }))
 )
@@ -119,24 +119,24 @@ const data = [
 
 <template>
   <div class="comic">
-    <span class="title">魔理沙太尊了！！！</span>
+    <h1>魔理沙太尊了！！！</h1>
     <div class="main">
       <!-- 图片区 -->
       <div class="cover">
         <!-- src="/src/assets/img/temp/封面方.jpg" -->
         <!-- src="/src/assets/img/temp/封面横.jpg" -->
-<!-- src="/src/assets/img/temp/小图.jpg"  -->
+        <!-- src="/src/assets/img/temp/小图.jpg"  -->
         <n-image-group
           show-toolbar-tooltip
           :on-preview-prev="onPrev"
           :on-preview-next="onNext"
         >
-<!-- :src="item.thumbnail" -->
+          <!-- :src="item.thumbnail" -->
           <n-image
-object-fit="contain"
+            object-fit="contain"
             v-for="item in pictureItem"
-                        :src="item.thumbnail"
-:style="{ '--background-url': `url(${item.thumbnail})` }"
+            :src="item.thumbnail"
+            :style="{ '--background-url': `url(${item.thumbnail})` }"
             class="flex-center"
             lazy
             :intersection-observer-options="{
@@ -196,13 +196,11 @@ object-fit="contain"
   flex-direction: column;
   margin: 1rem;
 }
-.title {
-  font-size: 1.5rem;
+.comic h1{
+  font-size: 1.6rem;
   flex: 5;
-  display: flex;
-  align-items: center;
   background-color: white;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
   padding: 0.3rem;
 }
 .main {
@@ -215,10 +213,10 @@ object-fit="contain"
   background-color: rgba(0, 0, 0, 0.61);
 }
 :deep(.cover .n-image) {
-position: relative;
+  position: relative;
   width: 100%;
   height: 100%;
-  }
+}
 :deep(.cover .n-image:hover) {
   cursor: default;
 }
@@ -235,10 +233,10 @@ position: relative;
 }
 :deep(.cover .n-image img) {
   position: absolute;
-    max-height: 100%;
-width: 100%;
+  max-height: 100%;
+  width: 100%;
   cursor: pointer;
-z-index: 1;
+  z-index: 1;
 }
 .display {
   flex: 1;
