@@ -4,6 +4,7 @@ import { useCommicComment, useCommicStore } from '@/features/commic/hooks'
 import { useRoute } from 'vue-router'
 
 import { NTabs, NTabPane } from 'naive-ui'
+import ComicCatalog from '@/features/commic-new/components-yes/ComicCatalog.vue'
 import ComicTalk from '@/features/commic-new/components-yes/ComicTalk.vue'
 import ComicInfo from '@/features/commic-new/components-yes/ComicInfo.vue'
 import ComicComment from '@/features/commic-new/components-yes/ComicComment.vue'
@@ -34,6 +35,15 @@ const pane_wrapper_style = 'display: flex;flex:1;flex-direction: column;'
       class="tabs"
       :pane-wrapper-style="pane_wrapper_style"
     >
+      <n-tab-pane
+        name="catalog"
+        tab="目录"
+        style="padding: 0"
+        class="tab-pane"
+        display-directive="show"
+      >
+        <ComicCatalog />
+      </n-tab-pane>
       <n-tab-pane
         name="comic"
         tab="漫画"
