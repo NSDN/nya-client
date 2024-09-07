@@ -105,3 +105,22 @@ textarea {
   width: 9rem;
   display: flex;
 }
+/** 时间: 2024-09-07
+* 操作人: MGRoid
+* 操作: 设置滚动条样式，不过Mdn中说非标准，可能是兼容性问题
+*/
+/* 滚动条整体样式 */
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height:0.4rem;
+}
+/* 滚动条的滑块（可以拖动的部分）样式 */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+
+/* 当鼠标悬停在滑块上时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
