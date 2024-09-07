@@ -41,6 +41,7 @@ function clickItem(id: string): void {
     >
       <n-image
         class="flex-center"
+        object-fit="contain"
         :class="{ 'commic-light': item.id === comicId }"
         :src="item.thumbnail"
         :alt="item.title"
@@ -88,6 +89,12 @@ function clickItem(id: string): void {
 .commic-item .n-image {
   height: 10rem;
   width: 8rem;
+}
+:deep(.n-image img) {
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .commic-item span {
