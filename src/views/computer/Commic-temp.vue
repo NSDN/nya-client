@@ -22,7 +22,7 @@ onBeforeMount(async (): Promise<void> => {
 })
 
 // 面板容器样式
-const pane_wrapper_style = 'display: flex;flex:1;flex-direction: column;'
+const pane_wrapper_style = 'display: flex; flex:1;z-index: 2;'
 </script>
 
 <template>
@@ -75,16 +75,15 @@ const pane_wrapper_style = 'display: flex;flex:1;flex-direction: column;'
   top: 0;
   right: 0;
   z-index: 1;
-  align-self: flex-start;
-  border: 0.2rem black solid;
-  padding: 0.5rem;
-  border-radius: 2rem;
-  background-color: #81d4fa;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid rgb(239, 239, 245);
+  border-radius: 3px 0px;
+  background-color: #f7f7fa;
 }
 .back:hover {
-  background-color: #3498db;
+  background-color: #b3e5fc;
 }
-
 .tabs {
   flex: 1;
 }
