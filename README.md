@@ -1,6 +1,6 @@
 # 喵玉殿新版论坛
 
-开发文档： <https://root.nsdn.club/nya-develop-document/>
+开发文档： <https://root.nsdn.club/nya-develop-document/>（FIXME: 链接已失效，需要更新）。
 
 ## 技术栈
 
@@ -19,18 +19,18 @@
 
 ## 启动项目
 
-\* 如果启动不了，可能是因为 node 版本过低，创建时的 node 版本为 v18
+\* 如果安装依赖或启动服务失败，可能是因为 node 版本过低，创建时的 node 版本为 v18
 
 ### 安装依赖
 
 ```shell
-npm install
+pnpm install
 ```
 
 ### 启动本地开发服务
 
 ```shell
-npm run dev
+pnpm run dev
 ```
 
 ## 目录结构
