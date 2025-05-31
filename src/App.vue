@@ -1,30 +1,26 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+// import { NConfigProvider, NMessageProvider } from 'naive-ui'
+
+// import { onMounted } from 'vue'
+// import { useInitStoreWithStorage } from './shared/composables'
+// import { useNaiveUIGlobalConfig } from './shared/composables/useNaiveUIGlobalConfig'
+// import { useLayout } from './shared/composables/useLayout'
+//
+// const { theme } = useNaiveUIGlobalConfig()
+// const { layout } = useLayout()
+
+// const { initStoreWithStorage } = useInitStoreWithStorage()
+// onMounted(() => initStoreWithStorage())
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <!-- <NConfigProvider :theme="theme"> -->
+  <!-- <NMessageProvider> -->
+  <!-- <component :is="layout"> -->
+  <component>
+    temp
+    <!-- <RouterView /> -->
+  </component>
+  <!-- </NMessageProvider> -->
+  <!-- </NConfigProvider> -->
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
