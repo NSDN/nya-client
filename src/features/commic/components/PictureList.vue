@@ -3,11 +3,12 @@ import type { Commic } from '../types'
 
 import { PictureListTypeEnum } from '../enums'
 import { computed } from 'vue'
-
+import { NImage } from 'naive-ui'
 const props = withDefaults(
   defineProps<{
     list: Commic.PictureItem[]
     listType?: PictureListTypeEnum
+    comicId?: Commic.PictureItem['id']
   }>(),
 
   { listType: PictureListTypeEnum.COMMIC }
@@ -38,7 +39,18 @@ function clickItem(id: string): void {
       :key="item.id"
       @click="clickItem(item.id)"
     >
-      <img :src="item.thumbnail" :alt="item.title" />
+      <n-image
+        class="flex-center"
+        object-fit="contain"
+        :class="{ 'commic-light': item.id === comicId }"
+        :src="item.thumbnail"
+        :alt="item.title"
+        preview-disabled
+        lazy
+        :intersection-observer-options="{
+          root: '#image-scroll-container',
+        }"
+      />
       <span :class="{ 'page-type-title': isPageType }">{{ item.title }}</span>
     </button>
   </div>
@@ -70,11 +82,19 @@ function clickItem(id: string): void {
   padding: 0;
   text-align: start;
 }
+:deep(.commic-light img) {
+  box-shadow: 0 0 10px 5px #ffeb3bd5;
+}
 
-.commic-item img {
+.commic-item .n-image {
   height: 10rem;
-  object-fit: cover;
   width: 8rem;
+}
+:deep(.n-image img) {
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .commic-item span {

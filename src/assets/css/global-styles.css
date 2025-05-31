@@ -62,3 +62,65 @@ input,
 textarea {
   outline: none;
 }
+
+/** 时间: 2024-08-25
+* 操作人: MGRoid
+* 操作: 定义我写的样式
+*/
+/* 弹性居中样式 */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 栅格居中样式 */
+.grid-center {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+/* 图片浏览背景 */
+.n-image-preview-overlay {
+  background-color: #333333fb;
+}
+
+/* 图片浏览工具栏 */
+.n-image-preview-toolbar {
+  transform: translateY(calc(100% - 65vh));
+  height: auto;
+  left: 0;
+  flex-direction: column;
+  padding: 0.3rem;
+}
+
+/* 工具栏图标 */
+.n-image-preview-toolbar .n-base-icon {
+  margin: 0.5rem 0;
+}
+
+/* 工具栏弹出提示 */
+.v-binder-follower-container .v-binder-follower-content {
+  width: 9rem;
+  display: flex;
+}
+/** 时间: 2024-09-07
+* 操作人: MGRoid
+* 操作: 设置滚动条样式，不过Mdn中说非标准，可能是兼容性问题
+*/
+/* 滚动条整体样式 */
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height:0.4rem;
+}
+/* 滚动条的滑块（可以拖动的部分）样式 */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 6px;
+}
+
+/* 当鼠标悬停在滑块上时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

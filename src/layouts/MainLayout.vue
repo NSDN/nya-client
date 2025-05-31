@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './components/Sidebar.vue'
+import SidebarController from './components/SidebarController.vue'
 import Header from './components/Header.vue'
 
 import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
+import { ref, Transition } from 'vue'
+
+const displaySidebar = ref<boolean>(true)
+const controlSidebar = () => (displaySidebar.value = !displaySidebar.value)
 </script>
 
 <template>
@@ -11,8 +16,15 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
     <Header />
 
     <div class="middle">
-      <Sidebar />
-      <div class="content"><RouterView /></div>
+      <Transition name="slide">
+        <Sidebar v-show="displaySidebar" />
+      </Transition>
+
+      <!-- TODO: 边栏开关时的内容块动画 -->
+      <div class="content">
+        <SidebarController @click="controlSidebar" />
+        <RouterView />
+      </div>
     </div>
 
     <footer>footer</footer>
@@ -31,8 +43,18 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
 
 .middle {
   display: flex;
-  flex: 1 1 0;
+  flex: 1;
   overflow: auto;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 
 .middle .content {
@@ -42,6 +64,7 @@ import { BASE_BACKGROUND, BASE_BACKGROUND_SIZE } from '@/config'
   flex: 1;
   overflow: hidden;
   padding: var(--common-content-padding);
+  position: relative;
 }
 
 #main-layout footer {
