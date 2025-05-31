@@ -9,10 +9,27 @@
   color-scheme: light dark;
 }
 
+:root {
+  /* 颜色 */
+  --color-font-on-deep-background: #fff;
+  --color-layout-content-background: rgba(255, 192, 203, 0.8);
+  --color-header-background: rgba(255, 100, 100, 0.6);
+  --color-sidebar-background: rgba(255, 255, 255, 0.8);
+  --color-footer-background: rgba(0, 128, 0, 0.8);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    color: rgba(255, 255, 255, 0.87);
+    color: rgba(230, 230, 255, 1);
     background-color: #242424;
+  }
+
+  :root {
+    /* 颜色 */
+    --color-layout-content-background: rgba(15, 15, 25, 0.8);
+    --color-header-background: rgba(255, 100, 100, 0.6);
+    --color-sidebar-background: rgba(2, 2, 2, 0.8);
+    --color-footer-background: rgba(0, 128, 0, 0.8);
   }
 }
 
