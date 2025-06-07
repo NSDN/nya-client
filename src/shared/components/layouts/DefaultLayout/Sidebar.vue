@@ -1,24 +1,25 @@
 <script setup lang="ts">
-// import PlateOnSidebar from '@/features/plate/components/PlateOnSidebar.vue'
-//
-// import { usePlateStore } from '@/features/plate/store'
+import { usePlates } from '@/features/plates/composables/usePlates'
+import { onMounted } from 'vue'
 
-// const plate = usePlateStore()
-// const plate = { plates: [] }
+import PlateOnSidebar from './PlateOnSidebar.vue'
+
+const { plates, handleGetPlates } = usePlates()
+
+onMounted(async () => {
+  await handleGetPlates()
+})
 </script>
 
 <template>
   <div class="sidebar">
     <div class="plate-group">
-      temp
-      <!--
       <PlateOnSidebar
         class="plate-item"
-        v-for="(item, index) of plate.plates"
+        v-for="(item, index) of plates"
         :key="index.toString()"
         :item="item"
       />
-      -->
     </div>
   </div>
 </template>

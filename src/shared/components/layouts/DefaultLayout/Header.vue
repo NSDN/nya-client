@@ -27,7 +27,7 @@ const handleClickLogo = () => {
   background: var(--color-header-background);
   box-sizing: border-box;
   display: flex;
-  font-size: var(--text-logo-size);
+  font-size: var(--font-size-logo);
   font-weight: 600;
   height: 5rem;
   justify-content: space-between;

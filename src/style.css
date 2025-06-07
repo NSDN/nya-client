@@ -11,11 +11,17 @@
 
 :root {
   /* 颜色 */
-  --color-font-on-deep-background: #fff;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-font-on-deep-background: var(--color-white);
   --color-layout-content-background: rgba(255, 192, 203, 0.8);
   --color-header-background: rgba(255, 100, 100, 0.6);
   --color-sidebar-background: rgba(255, 255, 255, 0.8);
   --color-footer-background: rgba(0, 128, 0, 0.8);
+
+  /* 文字大小 */
+  --font-size-logo: 1.25rem;
 }
 
 @media (prefers-color-scheme: dark) {

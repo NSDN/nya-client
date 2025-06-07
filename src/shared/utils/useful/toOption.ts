@@ -1,7 +1,7 @@
-import { Option } from '../rust'
+import { Option, type Optionable } from '../rust'
 import { isNil } from './isNil'
-import { isNumberType } from './isNumberType'
-import { isStringType } from './isStringType'
+import { isNumber } from './isNumber'
+import { isOption } from './isOption'
 
 /**
  * 空の可能性のある値を Option に変換する。
@@ -13,17 +13,17 @@ import { isStringType } from './isStringType'
  * @returns Option に変換された `value`。
  */
 export function toOption<Value>(
-  value: Value | undefined | null
+  value: Optionable<Value> | undefined | null,
 ): Option<Value> {
+  if (isOption<Value>(value)) {
+    return value
+  }
+
   if (isNil(value)) {
     return Option.none()
   }
 
-  if (!isStringType(value) && value === '') {
-    return Option.none()
-  }
-
-  if (!isNumberType(value) && Number(value) <= 0) {
+  if (isNumber(value) && Number.isNaN(value)) {
     return Option.none()
   }
 

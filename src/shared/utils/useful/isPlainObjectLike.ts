@@ -1,4 +1,4 @@
-import { isObjectType } from './isObjectType'
+import { isObject } from './isObject'
 
 /**
  * 回帰処理が可能な対象型かどうか。
@@ -7,9 +7,9 @@ import { isObjectType } from './isObjectType'
  * @returns `payload` が回帰初期可能な対象型かどうか。
  */
 export function isPlainObjectLike(
-  payload: unknown
+  payload: unknown,
 ): payload is Record<string, unknown> {
   const specialTypes: Function[] = [ArrayBuffer, Date, Map, Set, Blob]
-  const isSpecialType = specialTypes.some(type => payload instanceof type)
-  return isObjectType(payload) && !isSpecialType
+  const isSpecialType = specialTypes.some((type) => payload instanceof type)
+  return isObject(payload) && !isSpecialType
 }

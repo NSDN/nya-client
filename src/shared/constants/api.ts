@@ -1,4 +1,6 @@
 export const API_URLS = {
-  /** ログインする。 */
+  /** 登入。 */
   LOGIN: 'login',
+  /** 版块。*/
+  PLATES: 'plates',
 } as const

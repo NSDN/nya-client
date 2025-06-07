@@ -7,7 +7,7 @@ const plates: RouteRecordRaw[] = [
     path: ROUTE_PATHS.PLATE,
     name: ROUTE_NAMES.PLATE,
     meta: { displayCreateTopicButton: true },
-    component: () => import('@/features/plate/views/PlateContent.vue'),
+    component: () => import('@/features/plates/views/PlateContent.vue'),
   },
 ]
 

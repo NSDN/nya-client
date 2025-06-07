@@ -5,7 +5,7 @@ import { ErrorLevel } from '@/shared/constants'
 export class Option<Value> {
   private constructor(
     /**
-     * 被 Option 包装的值。
+     * 被 `Option` 包装的值。
      * 为了避免在 JSON 化过程中丢失类信息而导致识别不出是什么对象，
      * 所以采用辨识度更高的命名。
      */
@@ -75,5 +75,7 @@ export class Option<Value> {
   }
 }
 
-/** 获取被 Option 包裏的类型。 */
+/** 获取被 `Option` 包裏的类型。 */
 export type UnwrapOption<Item> = Item extends Option<infer Inner> ? Inner : Item
+/** 可能为 `Option` 类型的值。 */
+export type Optionable<Value> = Value | Option<Value>

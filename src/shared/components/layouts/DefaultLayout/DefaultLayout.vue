@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { CONFIG } from '@/shared/constants'
-import { ref, Transition } from 'vue'
+import { onMounted, ref, Transition } from 'vue'
 
 // import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './Sidebar.vue'
 import SidebarController from './SidebarController.vue'
 import Header from './Header.vue'
+import { useNaiveUIGlobalConfig } from '@/shared/composables'
 
 const displaySidebar = ref<boolean>(true)
 const controlSidebar = () => (displaySidebar.value = !displaySidebar.value)
+
+const { initMessager } = useNaiveUIGlobalConfig()
+onMounted(() => initMessager())
 </script>
 
 <template>

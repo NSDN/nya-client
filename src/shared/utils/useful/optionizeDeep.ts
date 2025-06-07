@@ -1,15 +1,14 @@
 import { Option } from '../rust'
 import { isNil } from './isNil'
-import { isObjectType } from './isObjectType'
+import { isObject } from './isObject'
 import { isPlainObjectLike } from './isPlainObjectLike'
-import { toOption } from './toOption'
 
 type OptionizeArray<Item> =
   Item extends Array<infer E> ? Option<Optionized<E>[]> : Option<never>
 
 type OptionizeObject<Item> = Item extends object
   ? Option<{ [Key in keyof Item]: Optionized<Item[Key]> }>
-  : Option<never>
+  : never
 
 type Optionized<Item> = Item extends null | undefined
   ? Option<never>
@@ -17,7 +16,7 @@ type Optionized<Item> = Item extends null | undefined
     ? OptionizeArray<Item>
     : Item extends object
       ? OptionizeObject<Item>
-      : Option<Item>
+      : Item
 
 /**
  * 空の可能性のある値を回帰的に Option に変換する。
@@ -43,10 +42,10 @@ export function optionizeDeep<Item>(item: Item): Optionized<Item> {
   }
 
   if (!isPlainObjectLike(item)) {
-    return toOption(item) as Optionized<Item>
+    return item as Optionized<Item>
   }
 
-  const newItem: Record<string, Option<any>> = {}
+  const newItem: Record<string, Option<unknown> | unknown> = {}
 
   for (const key in item) {
     const value = item[key]
@@ -56,12 +55,12 @@ export function optionizeDeep<Item>(item: Item): Optionized<Item> {
       continue
     }
 
-    if (isObjectType(value)) {
+    if (isObject(value)) {
       newItem[key] = optionizeDeep(value)
       continue
     }
 
-    newItem[key] = toOption(value)
+    newItem[key] = value
   }
 
   return Option.some(newItem) as Optionized<Item>

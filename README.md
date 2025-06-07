@@ -1,4 +1,4 @@
-# 喵玉殿论坛
+# 喵玉殿论坛客户端
 
 ## 开发前需要安装的工具
 
@@ -35,7 +35,7 @@ git clone https://github.com/NSDN/nya-client.git
 
 版本请查看 [package.json](./package.json) 文件。
 
-| 名称                                               | 役割                    |
+| 名称                                               | 功能                    |
 | -------------------------------------------------- | ----------------------- |
 | [TypeScript](https://www.typescriptlang.org/)      | JavaScript 类型扩张语言 |
 | [Vite](https://vite.dev/)                          | JavaScript 编译工具     |

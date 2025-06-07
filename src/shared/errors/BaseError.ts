@@ -30,8 +30,7 @@ export class BaseError extends Error {
   notify() {
     const level = this.config.level
     errorLoggerMap[level](this)
-
-    // TODO: 1. 添加 message 显示窗口
+    window.$message[level](this.config.message, { closable: true })
   }
 
   notifySilently() {
