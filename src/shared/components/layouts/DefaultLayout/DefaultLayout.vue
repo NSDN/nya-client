@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CONFIG } from '@/shared/constants'
-import { onMounted, ref, Transition } from 'vue'
+import { onMounted, ref } from 'vue'
 
 // import CreateTopicButton from '@/features/create-topic/components/CreateTopicButton.vue'
 import Sidebar from './Sidebar.vue'
