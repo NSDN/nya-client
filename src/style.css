@@ -13,12 +13,17 @@
   /* 颜色 */
   --color-white: #fff;
   --color-black: #000;
+  --color-pink: pink;
 
+  --color-normal-box-background: rgba(255, 255, 255, 0.6);
   --color-font-on-deep-background: var(--color-white);
   --color-layout-content-background: rgba(255, 192, 203, 0.8);
   --color-header-background: rgba(255, 100, 100, 0.6);
   --color-sidebar-background: rgba(255, 255, 255, 0.8);
   --color-footer-background: rgba(0, 128, 0, 0.8);
+
+  /* 阴影 */
+  --shadow-normal-box-shadow: 0 1px 8px 0 rgba(155, 155, 155, 1);
 
   /* 文字大小 */
   --font-size-logo: 1.25rem;
@@ -32,10 +37,14 @@
 
   :root {
     /* 颜色 */
+    --color-normal-box-background: rgba(3, 3, 3, 0.5);
     --color-layout-content-background: rgba(15, 15, 25, 0.8);
     --color-header-background: rgba(255, 100, 100, 0.6);
     --color-sidebar-background: rgba(2, 2, 2, 0.8);
     --color-footer-background: rgba(0, 128, 0, 0.8);
+
+    /* 阴影 */
+    --shadow-normal-box-shadow: 0 1px 8px 0 rgba(1, 1, 1, 1);
   }
 }
 

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { usePlates } from '@/features/plates/composables/usePlates'
+import { useCurrentPlate } from '@/features/plates/composables/useCurrentPlate'
 import { onMounted } from 'vue'
 
 import PlateOnSidebar from './PlateOnSidebar.vue'
 
-const { plates, handleGetPlates } = usePlates()
+const { plates, handleGetPlates, goToPlate } = usePlates()
+const { isCurrentPlate } = useCurrentPlate()
 
 onMounted(async () => {
   await handleGetPlates()
@@ -19,6 +21,8 @@ onMounted(async () => {
         v-for="(item, index) of plates"
         :key="index.toString()"
         :item="item"
+        :actived="isCurrentPlate(item.id)"
+        @click="() => goToPlate(item.id)"
       />
     </div>
   </div>

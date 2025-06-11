@@ -1,13 +1,13 @@
 <script setup lang="ts">
-// import Announcement from '@/features/plate/components/Announcement.vue'
-// import ArticleList from '@/features/article/components/ArticleList.vue'
-// import PictureList from '@/features/commic/components/PictureList.vue'
-//
-// import { watchEffect } from 'vue'
-// import { useCommicStore } from '@/features/commic/hooks'
-// import { usePlateStore } from '@/features/plate/store'
-// import useArticleStore from '@/features/article/hooks/use-article-store'
+import { useTopics } from '@/features/topics'
 
+import Announcement from '../components/Announcement.vue'
+import ArticleList from '../components/ArticleList.vue'
+import { useCurrentPlate } from '../composables/useCurrentPlate'
+// import PictureList from '@/features/commic/components/PictureList.vue'
+
+const { articles } = useTopics()
+const { isComicPlate } = useCurrentPlate()
 // const plate = usePlateStore()
 //
 // const commic = useCommicStore()
@@ -24,10 +24,11 @@
 
 <template>
   <div id="plate-content">
-    <!-- <Announcement /> -->
+    <Announcement />
 
     <div class="search">筛选 / 检索</div>
 
+    <div v-if="isComicPlate">漫画列表</div>
     <!-- 
     <PictureList
       v-if="plate.isCommicPlate"
@@ -35,9 +36,7 @@
       @click-item="commic.clickListItem"
     />
     -->
-    <!--
-    <ArticleList v-else :list="article.list" />
-    -->
+    <ArticleList v-else :list="articles" />
   </div>
 </template>
 
@@ -46,11 +45,12 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: 1rem;
 }
 
 .search {
   align-items: center;
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--color-normal-box-background);
   display: flex;
   height: 5rem;
   justify-content: center;

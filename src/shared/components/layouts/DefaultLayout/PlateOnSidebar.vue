@@ -1,57 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Plate } from '@/features/plates/types'
-import type { Option } from '@/shared/utils/rust'
-import { BaseError } from '@/shared/errors'
-import { ErrorLevel } from '@/shared/constants'
 
 const props = defineProps<{
-  item: Option<Plate>
+  item: Plate
+  actived: boolean
 }>()
 
 const background = computed<string>(() => {
-  return props.item.match({
-    some: (plate) => `url(${plate.background})`,
-
-    none: () => {
-      const error = new BaseError({
-        level: ErrorLevel.Error,
-        message: `[Sidebar]: 没有获取到块版信息。`,
-      })
-
-      error.notifySilently()
-      return ''
-    },
-  })
+  return `url(${props.item.background})`
 })
 
 const title = computed<string>(() => {
-  return props.item.match({
-    some: (plate) => plate.name,
-
-    none: () => {
-      const error = new BaseError({
-        level: ErrorLevel.Error,
-        message: `[Sidebar]: 没有获取到块版信息。`,
-      })
-
-      error.notifySilently()
-      return ''
-    },
-  })
+  return props.item.name
 })
-
-// const border = computed<string>(() => {
-//   return props.item.id === plate.currentPlate?.id ? '0.3rem solid red' : 'none'
-// })
-
-async function handleClick(): Promise<void> {
-  // await plate.transferToSpecifyPalte(props.item)
-}
 </script>
 
 <template>
-  <button class="plate-on-sidebar" @click="handleClick">
+  <button class="plate-on-sidebar" :class="{ actived }">
     <span class="title">{{ title }}</span>
   </button>
 </template>
@@ -73,10 +39,13 @@ async function handleClick(): Promise<void> {
   width: 100%;
 }
 
+.plate-on-sidebar.actived {
+  border: 0.3rem solid var(--color-pink);
+}
+
 .title {
   align-items: center;
   background: transparent;
-  /* border: v-bind('border'); */
   color: var(--color-white);
   display: flex;
   font-size: 1.25rem;
@@ -84,9 +53,5 @@ async function handleClick(): Promise<void> {
   justify-content: center;
   text-shadow: 1px 1px 8px #000;
   width: 100%;
-}
-
-.plate-on-sidebar:active .title {
-  background: rgba(0, 0, 0, 0.2);
 }
 </style>
