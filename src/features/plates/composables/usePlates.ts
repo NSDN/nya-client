@@ -50,7 +50,9 @@ export function usePlates() {
       )
       .match({
         ok: plates => {
-          platesStore.setPlates(plates)
+          platesStore.setPlates(
+            plates.sort((previous, next) => previous.sortOrder - next.sortOrder)
+          )
 
           if (platesStore.currentPlate.isSome()) {
             return
