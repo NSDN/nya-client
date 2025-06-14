@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import type { Article } from '@/features/topics/types'
+import type { TopicListItem } from '@/features/topics/types'
 
 defineProps<{
-  list: Article[]
+  list: TopicListItem[]
 }>()
+
+const emit = defineEmits<{
+  click: [id: string]
+}>()
+
+const handleClickItem = (id: string) => {
+  emit('click', id)
+}
 </script>
 
 <template>
@@ -12,6 +20,7 @@ defineProps<{
       class="article-item markdwon-body"
       v-for="item of list"
       :key="item.id"
+      @click="() => handleClickItem(item.id)"
     >
       <span v-html="item.title" />
     </button>
