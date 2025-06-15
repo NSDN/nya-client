@@ -18,4 +18,6 @@ export interface Plate {
   background: string
   /** 画面类型 */
   pageType: PageType
+  /** 排序锚点 */
+  sortOrder: number
 }

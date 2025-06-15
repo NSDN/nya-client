@@ -7,11 +7,13 @@ import { PLATE_IDS, type Plate, type PlateId } from '../types'
 import { Option, Result } from '@/shared/utils/rust'
 import { useCurrentPlate } from './useCurrentPlate'
 import { useRouter } from 'vue-router'
+import { useTopics } from '@/features/topics'
 
 export function usePlates() {
   const router = useRouter()
   const platesStore = usePlatesStore()
   const { setCurrentPlateById } = useCurrentPlate()
+  const { handleGetTopics } = useTopics()
 
   const plates = computed<Plate[]>(() => platesStore.plates)
 
@@ -50,7 +52,9 @@ export function usePlates() {
       )
       .match({
         ok: plates => {
-          platesStore.setPlates(plates)
+          platesStore.setPlates(
+            plates.sort((previous, next) => previous.sortOrder - next.sortOrder)
+          )
 
           if (platesStore.currentPlate.isSome()) {
             return
@@ -70,6 +74,8 @@ export function usePlates() {
     })
 
     setCurrentPlateById(id)
+
+    await handleGetTopics()
   }
 
   return {

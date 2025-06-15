@@ -8,6 +8,13 @@ import { computed } from 'vue'
 export function useCurrentPlate() {
   const platesStore = usePlatesStore()
 
+  const currentPlateId = computed<PlateId>(() => {
+    return platesStore.currentPlate.match({
+      some: plate => plate.id,
+      none: () => 'localization'
+    })
+  })
+
   const isCurrentPlate = (id: PlateId) => {
     return platesStore.currentPlate.match({
       some: plate => plate.id === id,
@@ -43,6 +50,7 @@ export function useCurrentPlate() {
   }
 
   return {
+    currentPlateId,
     isCurrentPlate,
     isComicPlate,
     setCurrentPlateById,

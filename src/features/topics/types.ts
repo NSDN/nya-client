@@ -1,4 +1,3 @@
-import type { AxiosResponse } from 'axios'
 import type { PlateId } from '../plates'
 
 /** 帖子共通信息 */
@@ -12,6 +11,8 @@ export interface TopicCore {
   plateId: PlateId
   /** 标题 */
   title: string
+  /** 预览图链接 */
+  thumbnail_link: string
   /** TAG */
   tag: string[]
   /** 创建时间 */
@@ -25,20 +26,10 @@ export enum TopicType {
   COMIC = 'comic'
 }
 
-/** 文章类型 */
-export enum ArticleType {
-  RICH_TEXT = 'rich-text',
-  MARKDOWN = 'markdown'
-}
-
 /** 文章 */
 export interface Article extends TopicCore {
   /** 帖子类型 */
   topicType: TopicType.ARTICLE
-  /** 帖文类型 */
-  contentType: ArticleType
-  /** 帖文正文 */
-  content: string
 }
 
 // TODO: 等做到漫画功能时具体确定剩余字段。
@@ -50,5 +41,14 @@ export interface Comic extends TopicCore {
 
 export type Topic = Article | Comic
 
-/** 帖文列表请求 API 的应答 */
-export type QueryArticlesResponse = AxiosResponse<Article[], string>
+/** 帖子列表元素 */
+export interface TopicListItem {
+  /** 帖子ID（经过编码的） */
+  id: string
+  /** 标题 */
+  title: string
+  /** 预览图链接 */
+  thumbnailLink: string
+  /** 更新时间 */
+  updatedAt: string
+}

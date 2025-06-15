@@ -4,22 +4,15 @@ import { useTopics } from '@/features/topics'
 import Announcement from '../components/Announcement.vue'
 import ArticleList from '../components/ArticleList.vue'
 import { useCurrentPlate } from '../composables/useCurrentPlate'
+import { onMounted } from 'vue'
 // import PictureList from '@/features/commic/components/PictureList.vue'
 
-const { articles } = useTopics()
+const { handleGetTopics, topics, goToTopic } = useTopics()
 const { isComicPlate } = useCurrentPlate()
-// const plate = usePlateStore()
-//
-// const commic = useCommicStore()
-// const article = useArticleStore()
-//
-// watchEffect(async () => {
-//   if (plate.isCommicPlate) {
-//     await commic.queryList()
-//   } else {
-//     await article.queryList()
-//   }
-// })
+
+onMounted(async () => {
+  await handleGetTopics()
+})
 </script>
 
 <template>
@@ -36,7 +29,7 @@ const { isComicPlate } = useCurrentPlate()
       @click-item="commic.clickListItem"
     />
     -->
-    <ArticleList v-else :list="articles" />
+    <ArticleList v-else :list="topics" @click="goToTopic" />
   </div>
 </template>
 

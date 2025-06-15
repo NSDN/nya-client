@@ -40,12 +40,12 @@ git clone https://github.com/NSDN/nya-client.git
 | [TypeScript](https://www.typescriptlang.org/)      | JavaScript 类型扩张语言 |
 | [Vite](https://vite.dev/)                          | JavaScript 编译工具     |
 | [Vue](https://vuejs.org/)                          | JavaScript 框架         |
-| [Naive UI](https://www.naiveui.com/en-US/os-theme) | Vue 用 UI 部品          |
+| [Naive UI](https://www.naiveui.com/en-US/os-theme) | Vue UI 组件             |
 | [Vue Router](https://router.vuejs.org/)            | Vue 路由工具            |
 | [Pinia](https://pinia.vuejs.org/)                  | Vue 状态管理工具        |
 | [Axios](https://axios-http.com/)                   | HTTP 客户端库           |
 
-## ディレクトリ構造
+## 目录结构
 
 **仅为目录结构的参考，并非完全一致。**
 
