@@ -8,7 +8,8 @@ const props = defineProps<{
 }>()
 
 const background = computed<string>(() => {
-  return `url(${props.item.background})`
+  return `url('https://i.pixiv.cat/img-master/img/2025/07/20/19/53/22/132915510_p1_master1200.jpg')`
+  // return `url(${props.item.background})`
 })
 
 const title = computed<string>(() => {

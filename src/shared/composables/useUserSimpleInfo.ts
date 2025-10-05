@@ -1,9 +1,11 @@
 import { useUserStore } from '@/store/user'
 import { computed } from 'vue'
-import { ONE_SECOND } from '../constants'
+import { ONE_SECOND, ROUTE_NAMES } from '../constants'
+import { useRouter } from 'vue-router'
 
 /** 简易个人信息 */
 export function useUserSimpleInfo() {
+  const router = useRouter()
   const userStore = useUserStore()
 
   const username = computed<string>(() => userStore.username)
@@ -11,13 +13,12 @@ export function useUserSimpleInfo() {
 
   /** 点击简易个人信息面板 */
   const handleClickSimpleInfo = async () => {
-    // TODO: 点击简易个人信息图标跳转至登入页。
-    // if (!userStore.loggedIn) {
-    //   await router.push({ name: ROUTE_NAMES.LOGIN })
-    // } else {
-    //   // TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）
-    //   console.warn('TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）')
-    // }
+    if (username.value === '游客') {
+      await router.push({ name: ROUTE_NAMES.LOGIN })
+    } else {
+      // TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）
+      console.warn('TODO: 登入后改为跳转到个人信息页（等待个人信息页的实装）')
+    }
   }
 
   let timer: number
@@ -50,6 +51,6 @@ export function useUserSimpleInfo() {
     userIcon,
     handleClickSimpleInfo,
     handleLongTimePushSimpleInfo,
-    handleReleaseKey,
+    handleReleaseKey
   }
 }
